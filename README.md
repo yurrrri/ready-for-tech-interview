@@ -6,6 +6,6 @@
 
 ## 🍎 iOS & Swift
 
-1. [Swift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/swift.md)
-2. [iOS: UIKit 위주](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ios.md)
-3. [RxSwift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/rxswift.md)
+1. [Swift]([https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/Swift.md])
+2. [iOS: UIKit 위주](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/iOS.md)
+3. [RxSwift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/rxswift.md)
