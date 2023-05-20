@@ -12,4 +12,4 @@
 
 ## 🎸 기타
 
-1. [개발 상식](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ETC/개발 관련 상식.md)
+1. [개발 상식](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ETC/%EA%B0%9C%EB%B0%9C%20%EA%B4%80%EB%A0%A8%20%EC%83%81%EC%8B%9D.md)
