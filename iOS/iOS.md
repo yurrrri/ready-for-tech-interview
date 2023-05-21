@@ -1,14 +1,29 @@
 ## iOS (UIKit 위주)
 
-### 1. bounds와 frame의 차이점을 설명하시오.
+### 1. Scene Delegate에 대해 설명하시오.
 
-### 2. 앱이 InActive 상태가 되는 시나리오를 설명하시오.
+- iOS 13 이후에 멀티 윈도우가 지원되면서, 기존에 App Delegate가 앱의 UI 상태와 프로세스를 모두 관리하던 것에서 Scene 별로 UI 상태를 관리할 필요성이 생기면서 Scene의 UI 상태를 관리하는 것이 분리된 개념이 Scene Delegate입니다.
+- Scene Delegate의 메소드를 통해 씬의 액티브 상태/포그라운드 상태/백그라운드 상태/인 액티브 상태일 때의 작업을 수행할 수 있습니다.
 
-### 3. scene delegate에 대해 설명하시오.
+#### 1-1. App의 상태에는 어떤 것들이 있나요?
 
-### 4. App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
+- Not running, Foreground, Foreground에서도 2가지로 나뉘는데 In Active, Active가 있으며 Background, Suspended가 있습니다.
 
-- Not running은 앱이 아직 실행되지 않은 상태, Inactive는 실행되고 있지만 이벤트를 받을 수 없는 상태, Background는 백그라운드에서 코드를 실행중인 상태, Suspended는 백그라운드에서 코드를 실행중이지 않은 상태를 의미합니다.
+
+### 2. App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
+
+- Not running은 앱이 아직 실행되지 않은 상태, Inactive는 실행되고 있지만 이벤트를 받을 수 없는 상태, Active는 포그라운드에 있으면서 사용자가 실제로 앱을 사용할 수 있는, 즉 앱이 이벤트를 받을 수 있는 상태, Background는 백그라운드에서 코드를 실행중인 상태, Suspended는 백그라운드에서 코드를 실행중이지 않는, 앱이 종료된 상태입니다.
+
+### 3. 앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?
+
+- 포그라운드에 있을 때 앱의 리소스가 높은 우선순위로 사용되기 때문에 백그라운드 앱을 종료할 필요가 있고, 백그라운드에 있을 떄 가능한한 리소스를 최소화해야한다는 제약사항이 있습니다.
+
+
+### 4. 앱이 InActive 상태가 되는 시나리오를 설명하시오.
+
+- 앱이 처음으로 실행될 때 foreground로 진입하면서 인 액티브 상태였다가 바로 사용자에게 온전히 화면이 보여져서 사용자가 사용할 수 있을 때 액티브 상태로 진입합니다. 즉, 액티브 상태 이전에 인 액티브 상태를 거칩니다.
+- 또한, 앱 스위처 상태에 돌입했을 때 In-Active 상태가 되며 백그라운드로 진입했을 때 백그라운드 직전에 인 액티브 상태가 됩니다.
+
 
 ### 5. ViewController의 생명주기를 설명하시오.
 
@@ -25,3 +40,11 @@
 ### 7. NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
 - NotificationCenter는 싱글톤 객체가 있는데, Notification을 보낼 객체들을 observer에 저장을 한 이후에 post를 하게 되면, Notification의 옵저버에 등록된 객체 모두에게 Notification을 보내게 됩니다.
 - 활용방안으로는 앱 내에서 공식적으로 연결될 수 없는 컴포넌트 간 상호작용이 필요한 경우에 활용되는데, 예를들어 앱이 백그라운드에 진입했을 때 뷰컨트롤러에서 특정 액션을 취해야 한다거나 키보드가 등장할 때 키보드 크기를 가져와서 뷰컨트롤러에서 크기 만큼 입력창의 y값을 조정한다거나 등에서 활용됩니다.
+
+### 8. UIWindow 객체의 역할은 무엇인가?
+
+- UIView의 컨테이너 역할로서, 앱 컨텐츠를 보여주고 이벤트를 뷰에 전달하는 역할을 합니다.
+- 이외에도 Window의 rootViewController를 포함해서 이로부터 시작된 하나 이상의 뷰를 보여주는 역할을 합니다.
+
+### 9. 상태 변화에 따라 다른 동작을 처리하기 위한 App Delegate 메서드들을 설명하시오.
+
