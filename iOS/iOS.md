@@ -24,11 +24,12 @@
 
 ### 5. ViewController의 생명주기를 설명하시오.
 
-- ViewController의 생명주기로 loadView, viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear, viewDidDisappear, viewDidUnload가 있습니다.
+- ViewController의 생명주기로 init, loadView, viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear, viewDidDisappear, viewDidUnload가 있습니다.
+- init은 뷰컨트롤러를 생성할 때 호출되며, 저장 프로퍼티를 초기화할 때 사용되고
 - loadView는 뷰컨트롤러에 뷰를 할당하고
 - viewDidLoad는 뷰가 완전히 메모리에 올라와있을 때 호출되어서 주로 초기값을 세팅할 때 해당 메소드에서 초기화를 하게 됩니다.
 - viewWillAppear는 뷰가 사용자에게 보이기 직전에 호출되는데, 다른 뷰컨트롤러에 갔다가 다시 올 때 이 메소드부터 호출됩니다.
-- viewDidAppear는 뷰가 사용자에게 보이기 시작할 때 호출됩니다.
+- viewDidAppear는 뷰가 사용자에게 완전히 보이기 시작할 때 호출되며, 애니메이션을 이 시점에 그리게 됩니다.
 - viewWillDisappear는 뷰가 뷰 계층에서 제거되기 직전에 호출되며, viewDidDisappear는 뷰가 뷰계층에서 완전히 사라지고 나서 호출되는 메소드입니다.
 
 ### 6. UIWindow 객체의 역할은 무엇인가?
@@ -40,9 +41,9 @@
 
 - iOS 13 이후로 멀티 윈도우 개념에서 기존의 Window가 Scene으로 대체되었기에, 상태 변화를 각각의 Scene 별로 관리하는 것으로 변경되면서 Scene Delegate에 상태 변화 메소드가 이전되어서 이 델리게이트의 메소드를 설명드리겠습다.
 - sceneDidDisconnect는 앱 스위처에서 Scene Session이 완전히 종료되었을 때 호출되며,
+- sceneWillEnterForeground는 백그라운드에서 포그라운드로 진입될 때
 - sceneDidBecomActive는 인 액티브상태에서 액티브 상태로 진입하여 사용자가 앱을 사용할 수 있을 때 호출됩니다.
 - sceneWillResignActive는 액티브 상태에서 인 액티브 상태로 진입될 때 호출되고
-- sceneWillEnterForeground는 백그라운드에서 포그라운드로 진입될 때
 - sceneDidBecomeBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
 
 ### 8. NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
@@ -55,8 +56,8 @@
 ### 10. TableView의 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.
 
 - UITableView 동작방식은 다음과 같습니다.
-  - ?? 뭘 설명해야할까
-- DataSource는 테이블뷰의 셀을 어떠한 형태로 보여줄것인가?에 대해 관련이 깊습니다. 필수적으로 구현해야하는 메소드 첫번째로 numberOfRowsInSection가 있는데, 해당 메소드는 테이블뷰에 몇개의 row 데이터를 보여줄 것인가를 지정하는 메소드입니다. 두번째로 cellForRowAt 메소드가 있습니다. 해당 메소드는 테이블뷰 row마다 보여줄 UITableViewCell과 그 형태를 지정 후 반환합니다.
+  - datasource, delegate, 재사용 관점에서 설명하기
+- 어떠한 형태로 보여줄것인가?에 대해 관련이 깊습니다. 필수적으로 구현해야하는 메소드 첫번째로 numberOfRowsInSection가 있는데, 해당 메소드는 테이블뷰에 몇개의 row 데이터를 보여줄 것인가를 지정하는 메소드입니다. 두번째로 cellForRowAt 메소드가 있습니다. 해당 메소드는 테이블뷰 row마다 보여줄 UITableViewCell과 그 형태를 지정 후 반환합니다.
 
 ### 11. 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.
 
@@ -77,7 +78,7 @@ https://babbab2.tistory.com/45
 
 ### 13. iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인지 설명하시오
 
-- UIKit
+- UIKit, SwiftUI
 
 ### 14. 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
 
@@ -88,9 +89,18 @@ https://cali-log.oopy.io/082474c8-2668-436b-af2f-f41fe891e1fb
 - 뷰로부터 사용자 액션을 전달받아 이를 모델에 전달하며, 모델 데이터의 변경이 발생했을 경우 해당 내용을 통해 뷰를 업데이트하는 역할을 합니다.
 - 자신에게 속한 뷰의 크기를 조정하는 역할을 합니다. 
 
+#### 14-1. UIViewController의 상위 클래스는 무엇인가요? 해당 클래스의 역할은 무엇인가요?
+
+- UIViewController는 UIResponder 추상클래스를 구현하고 있습니다.
+- (UIResponder 공부)
+
 ### 16. UINavigationController 의 역할이 무엇인지 설명하시오.
 
 https://developer.apple.com/documentation/uikit/uinavigationcontroller
 
 - UINavigationController는 뷰 컨트롤러를 네비게이션 계층으로 관리하고자 할 때, 자식 뷰 컨트롤러들을 관리하는 Container 뷰컨트롤러 역할을 합니다.
 - 네비게이션 컨트롤러는 뷰를 스택 형태로 관리하기 떄문에 네비게이션 바에 이전 화면으로 돌아가기 위한 back button을 제공합니다.
+
+#### 질문 출처
+
+https://github.com/JeaSungLEE/iOSInterviewquestions
