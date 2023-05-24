@@ -42,7 +42,8 @@
 - sceneDidDisconnect는 앱 스위처에서 Scene Session이 완전히 종료되었을 때 호출되며,
 - sceneDidBecomActive는 인 액티브상태에서 액티브 상태로 진입하여 사용자가 앱을 사용할 수 있을 때 호출됩니다.
 - sceneWillResignActive는 액티브 상태에서 인 액티브 상태로 진입될 때 호출되고
-- sceneWillEnterForeground는 백그라운드에서 포그라운드로 진입될 때, sceneDidBecomeBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
+- sceneWillEnterForeground는 백그라운드에서 포그라운드로 진입될 때
+- sceneDidBecomeBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
 
 ### 8. NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
 - NotificationCenter는 싱글톤 객체가 있는데, Notification을 보낼 객체들을 observer에 저장을 한 이후에 post를 하게 되면, Notification의 옵저버에 등록된 객체 모두에게 Notification을 보내게 됩니다.
@@ -60,3 +61,36 @@
 ### 11. 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.
 
 - tableViewDataSource Delegate 메소드에서 테이블뷰 매개변수를 구분하고자 하는 테이블뷰에 따라 구분하여 구현하면 됩니다.
+
+### 12. Bounds 와 Frame 의 차이점을 설명하시오.
+
+https://zeddios.tistory.com/231
+https://babbab2.tistory.com/45
+
+- frame은 자신의 슈퍼뷰를 기준으로 하여 위치와 사이즈를 정의하며, bounds는 자신을 기준으로 하여 위치와 사이즈를 정의합니다.
+- 따라서 frame의 origin 초기값은 슈퍼뷰에서 얼마만큼 떨어져있는가 이고, bounds의 origin 초기값은 항상 (0,0) 이 됩니다.
+- 만약에 frame의 origin을 변경하게 되면 슈퍼로부터의 위치가 변화게 되고, bounds의 origin을 변경하면 해당 뷰를 바라보는 viewport의 위치가 이동하게 됩니다.
+
+#### 12-1. 그럼 bounds와 frame은 각각 어쩔때 사용하는 것이 좋을까요?
+
+- frame은 UIView의 위치와 크기를 설정할 때 사용하며, bounds는 View를 회전한 후의 실제 크기를 알고 싶거나 ScrollView에서 특정 위치로 스크롤하여 해당 부분을 보여주고 싶을 때 사용합니다.
+
+### 13. iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인지 설명하시오
+
+- UIKit
+
+### 14. 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
+
+https://developer.apple.com/documentation/uikit/uiviewcontroller
+https://cali-log.oopy.io/082474c8-2668-436b-af2f-f41fe891e1fb
+
+- View Controller의 상위 클래스는 UIViewController입니다.
+- 뷰로부터 사용자 액션을 전달받아 이를 모델에 전달하며, 모델 데이터의 변경이 발생했을 경우 해당 내용을 통해 뷰를 업데이트하는 역할을 합니다.
+- 자신에게 속한 뷰의 크기를 조정하는 역할을 합니다. 
+
+### 16. UINavigationController 의 역할이 무엇인지 설명하시오.
+
+https://developer.apple.com/documentation/uikit/uinavigationcontroller
+
+- UINavigationController는 뷰 컨트롤러를 네비게이션 계층으로 관리하고자 할 때, 자식 뷰 컨트롤러들을 관리하는 Container 뷰컨트롤러 역할을 합니다.
+- 네비게이션 컨트롤러는 뷰를 스택 형태로 관리하기 떄문에 네비게이션 바에 이전 화면으로 돌아가기 위한 back button을 제공합니다.
