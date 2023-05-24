@@ -2,7 +2,7 @@
 
 운영체제, 네트워크, 데이터베이스, 자료구조, 알고리즘, iOS(UIKit 위주)/Swift 를 다룹니다.
 
-개인적으로 공부하면서 정리한 내용이라 틀린 정보가 있을 수 있습니다. 혹시 잘못된 내용이 있다면 PR을 통해 알려주세요!
+개인적으로 공부하면서 정리한 내용이라 틀린 정보가 있을 수 있습니다. 혹시 잘못된 내용이 있다면 PR을 통해 알려주시면 감사하겠습니다!
 
 ## 🍎 iOS & Swift
 
@@ -10,6 +10,11 @@
 2. [iOS: UIKit 위주](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/iOS.md)
 3. [RxSwift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/rxswift.md)
 
+## 🏗️ 자료구조 & 알고리즘
+
+1. [자료구조](https://github.com/yurrrri/ready-for-tech-interview/blob/main/자료구조&알고리즘/자료구조.md)
+
 ## 🎸 기타
 
 1. [개발 상식](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ETC/%EA%B0%9C%EB%B0%9C%20%EA%B4%80%EB%A0%A8%20%EC%83%81%EC%8B%9D.md)
+2. [손코딩](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ETC/%EC%86%90%EC%BD%94%EB%94%A9.md)
