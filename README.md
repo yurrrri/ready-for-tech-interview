@@ -12,7 +12,7 @@
 
 ## 🏗️ 자료구조 & 알고리즘
 
-1. [자료구조](https://github.com/yurrrri/ready-for-tech-interview/blob/main/자료구조&알고리즘/자료구조.md)
+1. [자료구조](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%08%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0.md)
 
 ## 🎸 기타
 
