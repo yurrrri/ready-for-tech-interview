@@ -1,4 +1,6 @@
-## iOS (UIKit 위주)
+# iOS (UIKit 위주)
+
+## iOS (UIKit)
 
 ### 1. Scene Delegate에 대해 설명하시오.
 
@@ -100,6 +102,58 @@ https://developer.apple.com/documentation/uikit/uinavigationcontroller
 
 - UINavigationController는 뷰 컨트롤러를 네비게이션 계층으로 관리하고자 할 때, 자식 뷰 컨트롤러들을 관리하는 Container 뷰컨트롤러 역할을 합니다.
 - 네비게이션 컨트롤러는 뷰를 스택 형태로 관리하기 떄문에 네비게이션 바에 이전 화면으로 돌아가기 위한 back button을 제공합니다.
+
+### 17. 실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.
+
+https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator/TestingontheiOSSimulator.html
+(아카이브 된 애플 문서라서 현재는 푸시알림, auto input 등 가능한 기능들이 몇개 있는 것으로 보임)
+
+시뮬레이터에서 테스트할 수 없는 환경을 설명드리겠습니다.
+- 하드웨어
+```모션 지원(가속도계 및 자이로스코프)
+카메라
+근접 센서 
+기압계
+주변 광 센서
+```
+
+- Apple API
+```
+사진, 연락처, 일정 및 미리 알림에 대한 액세스에 대한 개인 정보 알림
+핸드오프 기능
+Message UI (메시지 보내기) 
+```
+
+### 18. 앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?
+
+**User Defaults** 
+- 
+
+**Core Data**
+
+**SQLite**
+
+**Realm**
+
+
+### 19. Core Data와 Sqlite 같은 데이터 베이스의 차이점을 설명하시오.
+
+
+### 19. 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
+### 20. 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
+### 21. View 객체에 대해 설명하시오.
+### 22. UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
+### 23. iOS에서 뷰(View)와 레이어(Layer)의 개념과 차이점에 대해 설명해보세요.
+### 24. setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
+### 25. stackView의 장점과 단점에 대해서 설명하시오.
+
+### 26. App thinning에 대해서 설명하시오.
+### 27. 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
+### 28. @Main에 대해서 설명하시오.
+### 29. UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
+### 30. Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
+### 31. App Bundle의 구조와 역할에 대해 설명하시오.
+
 
 #### 질문 출처
 
