@@ -119,7 +119,6 @@ https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/iOS_Si
 
 - Apple API
 ```
-사진, 연락처, 일정 및 미리 알림에 대한 액세스에 대한 개인 정보 알림
 핸드오프 기능
 Message UI (메시지 보내기) 
 ```
@@ -140,11 +139,24 @@ Message UI (메시지 보내기)
 
 
 ### 19. 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
+
+- UIViewController입니다.
+- UIView를 통해 전달되는 사용자의 액션에 대해 응답하며, 이 과정에서 데이터의 변경이 발생할 경우에 Model로부터 전달받은 변화 내용을 기반으로 뷰를 업데이트합니다.
+
 ### 20. 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
 ### 21. View 객체에 대해 설명하시오.
+
+- 직사각형 영역 안에 포함된 컨텐츠를 관리하는 객체이며, 앱의 UI를 구성함에 있어 가장 기본적인 구성 단위입니다.
+- 뷰는 다음과 같은 역할을 하게 됩니다.
+    - 직사각형 영역 안에 컨텐츠를 그려냄
+    - 뷰는 0개 이상의 SubView를 가지게 되는데,  이 SubView들의 사이즈 혹은 위치를 관리하게 됩니다.
+    - UIResponder의 하위 클래스로서, 터치와 그 외의 이벤트에 대해 응답할 수 있습니다. 이 제스쳐를 핸들링하기 위해 gesture recognizer를 추가할 수 있습니다.
+
 ### 22. UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
 ### 23. iOS에서 뷰(View)와 레이어(Layer)의 개념과 차이점에 대해 설명해보세요.
+
 ### 24. setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
+
 ### 25. stackView의 장점과 단점에 대해서 설명하시오.
 
 ### 26. App thinning에 대해서 설명하시오.
