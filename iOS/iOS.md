@@ -130,3 +130,89 @@ Message UI (메시지 보내기)
 
 **Core Data**
 - UserDefaults 보다는 복잡하고 큰 데이터를 영구적으로 저장하기에 적합하며, Entity 기반으로 앱의 모델을 관리하는 프레임워크입니다.
+
+#### 18-1. User Defaults에 struct나 class를 저장할 수 있나요?
+
+- 
+
+### 19. 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
+
+- UIViewController입니다.
+- UIView를 통해 전달되는 사용자의 액션에 대해 응답하며, 이 과정에서 데이터의 변경이 발생할 경우에 Model로부터 전달받은 변화 내용을 기반으로 뷰를 업데이트합니다.
+
+### 20. 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
+
+- 첫번째 방식은 xib를 이용하는 방식입니다. xib파일과 해당 xib 파일과 동일한 이름을 가진 class 파일을 만들어서, xib에서 인터페이스를 구성한 후 해당 xib와 커스텀 클래스를 연결해줍니다.
+- 두번째는 코드로 작성하는 방식입니다. UIView를 상속한 클래스에서 addSubView를 통해 자식 뷰들을 추가해서 코드로 뷰를 만드는 방식입니다. <br/>
+
+이 때 2가지 방식 모두 init과 required init을 구현해야한다는 특징이 있습니다.
+
+#### 20-1. init과 required init을 반드시 구현해야한다고 했는데 무슨 의미인가요?
+
+- UIView는 지정 생성자를 생략하면 자동으로 상속하는데, 지정 생상자를 통해 커스텀하게 view를 초기화하게 되면 required init도 반드시 구현해야하므로, 2가지 메소드를 필수적으로 구현해야합니다.
+
+### 21. View 객체에 대해 설명하시오.
+
+- 직사각형 영역 안에 포함된 컨텐츠를 관리하는 객체이며, 앱의 UI를 구성함에 있어 가장 기본적인 구성 단위입니다.
+- 뷰는 다음과 같은 역할을 하게 됩니다.
+    - 직사각형 영역 안에 컨텐츠를 그려냄
+    - 뷰는 0개 이상의 SubView를 가지게 되는데,  이 SubView들의 사이즈 혹은 위치를 관리하게 됩니다.
+    - UIResponder의 하위 클래스로서, 터치와 그 외의 이벤트에 대해 응답할 수 있습니다. 이 제스쳐를 핸들링하기 위해 gesture recognizer를 추가할 수 있습니다.
+
+#### 21-1. 사용자의 액션이 들어왔을 때 UIView와 UIViewController 각각의 역할에 대해 설명하시오.
+
+
+### 22. UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
+
+https://babbab2.tistory.com/53
+
+- Core Animation 프레임워크에 포함된 객체로서, UIView는 하나의 layer를 감싸고 있는 형태입니다.
+- layer는 UIKit에서 처리할 수 없는 이미지 기반의 컨텐츠를 관리하는 역할을 하며, border, shadow, cornerRadius 등의 속성을 UIView 대신 변경해주는 역할을 하기도 합니다.
+
+### 23. iOS에서 뷰(View)와 레이어(Layer)의 개념과 차이점에 대해 설명해보세요.
+
+https://ios-development.tistory.com/977
+
+- UIView가 layer를 감싸고 있는 형태이고, UIView는 1개 이상의 Layer를 가질 수 없지만 하나의 Layer는 여러개의 sub layer를 가질 수 있습니다.
+- UIView는 UIKit에 속한 클래스인 반면에 Layer는 Core Animation 프레임워크에 속한 클래스입니다.
+- UIView는 UIResponder의 서브클래스이기 때문에 사용자의 제스처를 제스처 인식기를 통해 인식할 수 있지만, layer는 UIResponder가 없기 때문에 제스처를 인식할 수 없습니다.
+
+### 24. setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
+
+### 25. stackView의 장점과 단점에 대해서 설명하시오.
+
+장점으로는 다음과 같습니다.
+
+- stackView는 해당 뷰의 SubView들을 조건에 따라 자동으로 간격조절 및 정렬을 해주기 때문에, 개발자가 직접 constraint를 일일이 다 줄 번거로움이 훨씬 줄어들게 됩니다.
+- 이에 따라 뷰를 추가하거나 삭제하더라도 제약을 거는것이 매우 편리해집니다.
+
+단점으로는 다음과 같습니다.
+
+- stackView의 SubView는 StackView가 지정한 뷰의 배치나 정렬을 따르기에, 개별 SubView의 디테일한 위치나 크기 조정은 어려울 수 있습니다.
+
+### 26. App thinning에 대해서 설명하시오.
+
+### 27. 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
+
+- UIApplication 객체가 생성되며, 이 객체는 
+
+### 28. @Main에 대해서 설명하시오.
+
+### 29. UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
+
+### 30. Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
+
+- Cocoa Touch Framework에 포함되어있는 프레임워크로, URL을 다룰 때 쓰는 클래스인 URLSession, Json을 엔코딩/디코딩할 때 사용하는 JSONEncoder/Decoder 등이 있습니다.
+
+### 31. App Bundle의 구조와 역할에 대해 설명하시오.
+
+https://neph3779.github.io/ios/WhatIsAppBundle/
+
+- App Bundle 안에는 앱을 실제로 실행하는 파일, info.plist, 사용하는 프레임워크, 이미지나 문자열 등의 Resource 파일, 화면을 스토리보드나 Xib로 구현할 경우에 해당 파일 또한 App Bundle 안에 포함됩니다.
+
+
+#### 질문 출처
+
+https://github.com/JeaSungLEE/iOSInterviewquestions
+
+면접 스터디에서 나온 꼬리질문 추가
