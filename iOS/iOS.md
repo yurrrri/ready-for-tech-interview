@@ -210,6 +210,45 @@ https://neph3779.github.io/ios/WhatIsAppBundle/
 
 - App Bundle 안에는 앱을 실제로 실행하는 파일, info.plist, 사용하는 프레임워크, 이미지나 문자열 등의 Resource 파일, 화면을 스토리보드나 Xib로 구현할 경우에 해당 파일 또한 App Bundle 안에 포함됩니다.
 
+## Autolayout
+
+### 1. 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
+
+#### 1-1. 코드로 작성했을 때의 장단점은 뭔가요?
+
+https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code
+
+장점
+- 빠르고 가볍다.
+- 협업 시 Conflict가 날 때 해결에 용이하다.
+- 뷰에 대한 재사용이 용이하다.
+
+단점
+- 화면의 전반적인 흐름을 파악하기 어렵다.
+
+### 2. hugging, resistance에 대해서 설명하시오.
+### 3. Intrinsic Size에 대해서 설명하시오.
+### 4. 스토리보드를 이용했을때의 장단점을 설명하시오.
+
+https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code
+
+장점
+- 인터페이스의 전반 흐름을 바로 확인 가능하며, 레이아웃 결과를 예측하기 쉽다.
+
+단점
+- 앱의 규모가 커질수록 화면 로딩이 무거워진다.
+- IBOutlet이나 IBAction의 연결이 끊어졌을 때 파악이 어렵다.
+- 협업 시, 스토리보드를 분리하지 않는 경우 conflict가 날 때 해결이 어려워진다.
+- 데이터의 흐름을 스토리보드만으로 알기 어렵다는 단점이 있다.
+
+### Safearea에 대해서 설명하시오.
+
+- iOS 11이후 등장한 개념으로, 노치나 하단 홈에 의해 가려질 수 있는 부분에 대한 마진을 자체적으로 가지는 영역입니다.
+
+### Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.
+
+### Auto Layout과 Frame-based Layout의 차이점은 무엇인가요?
+### 성능 향상을 위해 어떤 디버깅 도구를 사용할 수 있나요? 각각의 디버깅 도구는 어떤 상황에서 사용하는 것이 좋나요?
 
 #### 질문 출처
 
