@@ -210,6 +210,20 @@ https://neph3779.github.io/ios/WhatIsAppBundle/
 
 - App Bundle 안에는 앱을 실제로 실행하는 파일, info.plist, 사용하는 프레임워크, 이미지나 문자열 등의 Resource 파일, 화면을 스토리보드나 Xib로 구현할 경우에 해당 파일 또한 App Bundle 안에 포함됩니다.
 
+### 32. NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
+### 33. prepareForReuse에 대해서 설명하시오.
+### 34. 다크모드를 지원하는 방법에 대해 설명하시오.
+
+https://labs.brandi.co.kr//2019/12/19/kimjh.html
+- UITraitCollection.userInterfaceStyle에서 dark 일 경우와 아닐 경우의 color를 각각 지정해주고
+- 이미지의 경우 Appreance에서 Any, Dark 속성을 주변 다크모드 일때와 아닐 떄의 이미지를 각각 추가할 수 있습니다.
+- 혹은 이미지에 tint color를 적용하여 변경할 수도 있습니다.
+
+### 35. Dynamic Library와 Static Library의 차이점에 대해 설명해보세요.
+### 36. 성능 향상을 위해 어떤 디버깅 도구를 사용할 수 있나요? 각각의 디버깅 도구는 어떤 상황에서 사용하는 것이 좋나요?
+### 37. MVVM, MVI, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오.
+### 38. 의존성 주입에 대하여 설명하시오.
+
 ## Autolayout
 
 ### 1. 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
@@ -226,8 +240,22 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 단점
 - 화면의 전반적인 흐름을 파악하기 어렵다.
 
-### 2. hugging, resistance에 대해서 설명하시오.
-### 3. Intrinsic Size에 대해서 설명하시오.
+### 2. Intrinsic Size에 대해서 설명하시오.
+https://velog.io/@eddy_song/intrinsic-content-size
+
+- intrinsic content size는 고유 콘텐츠의 크기로, intrinsic content size를 가지고 있는 뷰는 해당 사이즈에 맞춰서 자동으로 조건을 설정하기 떄문에 개발자가 별도로 크기를 지정해주지 않아도 됩니다.
+- intrinsic content size를 가지고 있는 뷰들은 다음과 같습니다.
+- UISlider: width만 가짐
+- UITextView의 경우 스크롤이 있다면 intrinsic size가 없지만, 스크롤이 없다면 텍스트의 크기에 따라 결정되기 때문에 Intrinsic size가 있습니다.
+- UIImageView의 경우 이미지가 들어왔을 때 이미지의 크기에 기반하여 intrinsic size가 결정됩니다.
+- 그 외의 UI Component는 intrinsic content size를 가지고 있습니다.
+
+### 3. hugging, resistance에 대해서 설명하시오.
+
+- intrinsic size가 있는 뷰에 개발자가 특정 width나 height에 대한 조건을 주었을 때, 어떤 사항을 더 우선순위로 하여 사이즈를 조정해줄 것인가와 관련한 속성입니다.
+- hugging은 intrinsic size 이상으로 늘어나지 않으려고 하도록 조건을 주는것이며, Resistance는 intrinsic size 이하로 줄어들지 않으려고 하도록 조건을 주는 것입니다.
+- 디폴트로 hugging은 250, resistance는 750로 세팅되어있으며 만약 특정 뷰가 이 이상 더 늘어나지 않도록 하고자하면 해당 뷰의 hugging의 우선순위 값을 250 이상으로 늘려주면 된다.
+
 ### 4. 스토리보드를 이용했을때의 장단점을 설명하시오.
 
 https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code
