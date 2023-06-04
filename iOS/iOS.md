@@ -269,14 +269,20 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 - 협업 시, 스토리보드를 분리하지 않는 경우 conflict가 날 때 해결이 어려워진다.
 - 데이터의 흐름을 스토리보드만으로 알기 어렵다는 단점이 있다.
 
-### Safearea에 대해서 설명하시오.
+### 5. Safearea에 대해서 설명하시오.
 
 - iOS 11이후 등장한 개념으로, 노치나 하단 홈에 의해 가려질 수 있는 부분에 대한 마진을 자체적으로 가지는 영역입니다.
 
-### Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.
+### 6. Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.
 
-### Auto Layout과 Frame-based Layout의 차이점은 무엇인가요?
-### 성능 향상을 위해 어떤 디버깅 도구를 사용할 수 있나요? 각각의 디버깅 도구는 어떤 상황에서 사용하는 것이 좋나요?
+https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html
+
+- left constraint는 절대적인 개념으로, 항상 화면의 왼쪽을 가리킵니다.
+- leading constraint는 장치의 국가 설정에 영향을 받게 되는데, 국가별 읽는 방향에 따라 방향이 달라진다. 예를들어 오른쪽에서 왼쪽으로 읽는 문화권의 경우 leading이 오른쪽, trailing이 왼쪽을 가리키게 된다
+- 따라서 애플은 leading constraint 사용을 권장하고있음.
+
+### 7. Auto Layout과 Frame-based Layout의 차이점은 무엇인가요?
+
 
 #### 질문 출처
 
