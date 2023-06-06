@@ -133,7 +133,8 @@ Message UI (메시지 보내기)
 
 #### 18-1. User Defaults에 struct나 class를 저장할 수 있나요?
 
-- 
+- struct나 class와 같은 사용자 정의 타입은 NsData 형식으로 변경한다음, NSKeyedArchiver를 이용하여 저장할 수 있습니다.
+- 가져올때는 NsKeyedUnArchiever로 객체를 복구해서 가져올 수 있습니다.
 
 ### 19. 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
 
@@ -211,7 +212,12 @@ https://neph3779.github.io/ios/WhatIsAppBundle/
 - App Bundle 안에는 앱을 실제로 실행하는 파일, info.plist, 사용하는 프레임워크, 이미지나 문자열 등의 Resource 파일, 화면을 스토리보드나 Xib로 구현할 경우에 해당 파일 또한 App Bundle 안에 포함됩니다.
 
 ### 32. NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
+
 ### 33. prepareForReuse에 대해서 설명하시오.
+
+- 테이블뷰에서 셀을 재사용하여 객체를 반환하기 전에 호출되는 메소드로, content와 무관한 내용들은 재사용하게 됩니다.
+- 따라서 재사용으로 인해 셀 간 내용이 섞이는 이슈 등을 방지하기 위해 해당 메소드에서 데이터를 초기 상태로 초기화해주는 작업을 진행해야 합니다.
+
 ### 34. 다크모드를 지원하는 방법에 대해 설명하시오.
 
 https://labs.brandi.co.kr//2019/12/19/kimjh.html
@@ -226,7 +232,10 @@ https://labs.brandi.co.kr//2019/12/19/kimjh.html
 
 ## Autolayout
 
-### 1. 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
+### 1. 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지
+
+https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html#//apple_ref/doc/uid/TP40010853-CH16-SW1
+
 
 #### 1-1. 코드로 작성했을 때의 장단점은 뭔가요?
 
@@ -282,7 +291,6 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 - 따라서 애플은 leading constraint 사용을 권장하고있음.
 
 ### 7. Auto Layout과 Frame-based Layout의 차이점은 무엇인가요?
-
 
 #### 질문 출처
 
