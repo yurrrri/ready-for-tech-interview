@@ -14,6 +14,10 @@
 
 1. [자료구조](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%08%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0.md)
 
+## 🖥️ 운영체제
+
+1. [운영체제](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C.md)
+
 ## 🎸 기타
 
 1. [개발 상식](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ETC/%EA%B0%9C%EB%B0%9C%20%EA%B4%80%EB%A0%A8%20%EC%83%81%EC%8B%9D.md)
