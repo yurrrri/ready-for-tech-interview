@@ -213,6 +213,9 @@ https://neph3779.github.io/ios/WhatIsAppBundle/
 
 ### 32. NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
 
+- NSCache는 딕셔너리와는 달리 자동 삭제 정책이 있어서 필요에 따라 일부 항목을 제거합니다.
+- key의 이름을 변경하게 되면, 딕셔너리는 키 객체를 복사하는 대신에, NSCache는 키 객체를 복사하지 않고 기존의 키를 그대로 가져가게 된다는 차이가 있습니다. 
+
 ### 33. prepareForReuse에 대해서 설명하시오.
 
 - 테이블뷰에서 셀을 재사용하여 객체를 반환하기 전에 호출되는 메소드로, content와 무관한 내용들은 재사용하게 됩니다.
@@ -226,16 +229,34 @@ https://labs.brandi.co.kr//2019/12/19/kimjh.html
 - 혹은 이미지에 tint color를 적용하여 변경할 수도 있습니다.
 
 ### 35. Dynamic Library와 Static Library의 차이점에 대해 설명해보세요.
-### 36. 성능 향상을 위해 어떤 디버깅 도구를 사용할 수 있나요? 각각의 디버깅 도구는 어떤 상황에서 사용하는 것이 좋나요?
-### 37. MVVM, MVI, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오.
-### 38. 의존성 주입에 대하여 설명하시오.
+
+https://ios-development.tistory.com/800
+- 두 가지 라이브러리는 라이브러리를 프로젝트에 어떤 시점에 포함시키는지에 따라 차이가 있습니다.
+- static library는 object 언어에서 실행파일로 변경될 때 포함되는 라이브러리고, dynamic library는 런타임 중에 해당 라이브러리를 연결합니다.
+- 이에 따라 static library는 메모리 효율이 좋지 않다라는 단점이 있고, dynamic library는 그에 비해 필요할 때마다 라이브러리를 불러오므로 메모리 효율이 좋다는 장점이 있습니다.
+- 또한, static library는 추가 작업없이 라이브러리를 사용할 수 있다는 장점이 있는 반면에 dynamic library는 라이브러리를 찾아서 올리는 시간이 추가적으로 소요되므로 시간이 상대적으로 더 걸린다는 단점이 있습니다.
+
+### 36. MVVM, MVI, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오.
+### 37. 의존성 주입에 대하여 설명하시오.
 
 ## Autolayout
 
 ### 1. 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지
 
-https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html#//apple_ref/doc/uid/TP40010853-CH16-SW1
+https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html#//apple_ref/doc/uid/TP40010853-CH16-SW1 <br/>
+https://nsios.tistory.com/99 <br/>
 
+1) NSLayoutConstraint
+- 제약을 가지는 뷰의 몇 배, 그리고 상수 몇만큼 떨어져있는지에 대한 수식으로 오토레이아웃을 작성하는 방법입니다.
+
+2) NSLayoutAnchor
+- NSLayoutConstraint가 사용이 불편해서 간소화되어 나온 클래스로, 어떤 뷰와 제약이 걸려있는지 그리고 top/leading.trailing.bottom의 어떤 부분과 제약이 걸려있는지, 몇만큼 떨어져있는지에 대한 몇 가지 정보만 주어 간결하게 오토레이아웃을 세팅가능합니다.
+
+3) Visual Format Language
+
+레이아웃의 시각적 표현으로, NSLayoutConstraint의 withVisualFormat 속성을 활용하여 좀 더 시각적으로 간결하게 활용하는 방법입니다.
+뷰는 [] (대괄호) 사용
+뷰간연결은 - (하이픈)을 사용
 
 #### 1-1. 코드로 작성했을 때의 장단점은 뭔가요?
 
@@ -257,7 +278,7 @@ https://velog.io/@eddy_song/intrinsic-content-size
 - UISlider: width만 가짐
 - UITextView의 경우 스크롤이 있다면 intrinsic size가 없지만, 스크롤이 없다면 텍스트의 크기에 따라 결정되기 때문에 Intrinsic size가 있습니다.
 - UIImageView의 경우 이미지가 들어왔을 때 이미지의 크기에 기반하여 intrinsic size가 결정됩니다.
-- 그 외의 UI Component는 intrinsic content size를 가지고 있습니다.
+- 그 외의 UIView/UIStackView 외의 다른 UI Component는 intrinsic content size를 가지고 있습니다.
 
 ### 3. hugging, resistance에 대해서 설명하시오.
 
@@ -291,6 +312,10 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 - 따라서 애플은 leading constraint 사용을 권장하고있음.
 
 ### 7. Auto Layout과 Frame-based Layout의 차이점은 무엇인가요?
+
+- Autolayout은 뷰와의 관계에 제약을 두어 레이아웃을 짜는 방식이며, Frame-based layout은 view의 frame을 직접 지정하여 레이아웃을 짜는 방식입니다.
+- Autolayout은 뷰 간의 관계로 정의하기 때문에 기기별로 대응이 가능하다는 장점이 있는 반면에 Frame-based layout은 그렇지 않아서 기기 별로 대응하는 레이아웃을 별도로 구성해야한다는 번거로움이 있습니다.
+
 
 #### 질문 출처
 
