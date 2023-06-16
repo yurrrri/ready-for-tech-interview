@@ -245,6 +245,9 @@ https://ios-development.tistory.com/800
 ### CocoaPod을 gitignore에 넣어야 하는이유?
 ### Responder Chain은 무엇이고, 구조가 어떻게 되어있는가?
 #### First Responder 역할에 대해 설명하시오.
+### selector는 무엇인가. 어떻게 불러내는가.
+
+
 
 ## Autolayout
 
@@ -322,16 +325,6 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 
 - Autolayout은 뷰와의 관계에 제약을 두어 레이아웃을 짜는 방식이며, Frame-based layout은 view의 frame을 직접 지정하여 레이아웃을 짜는 방식입니다.
 - Autolayout은 뷰 간의 관계로 정의하기 때문에 기기별로 대응이 가능하다는 장점이 있는 반면에 Frame-based layout은 그렇지 않아서 기기 별로 대응하는 레이아웃을 별도로 구성해야한다는 번거로움이 있습니다.
-
-## Rx
-### Reactive Programming이 무엇인지 설명하시오.
-### RxSwift를 왜 사용하는지 설명하시오.
-### RxSwift의 단점을 설명하시오.
-### RxSwift에서 Hot Observable과 Cold Observable의 차이를 설명하시오.
-### Subject의 종류와 차이점에 대해 설명하시오.
-### Subject와 Driver의 차이를 설명하시오.
-### Single, Completable, Maybe의 차이점에 대해 설명하고, 언제 적용하면 좋을지 설명하시오.
-### RxSwift는 왜 MVC가 아닌 MVVM과 잘 어울릴까요?
 
 #### 질문 출처
 
