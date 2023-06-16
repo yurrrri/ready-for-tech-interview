@@ -13,4 +13,7 @@
 - BehaviorSubject는 구독이 시작되기 전 방출되었던 가장 최근 값을 새로운 구독자에게 방출합니다. 첫 구독자라면 지정된 기본값을 방출합니다.
 - ReplaySubject는 버퍼크기를 정해두고 새로운 구독이 시작되면 버퍼 크기만큼의 최근에 방출되었던 값을 모아두었다가 새로운 구독자에게 방출합니다.
 
-</br>
+### RxSwift에서 Hot Observable과 Cold Observable의 차이를 설명하시오.
+### Subject와 Driver의 차이를 설명하시오.
+### Single, Completable, Maybe의 차이점에 대해 설명하고, 언제 적용하면 좋을지 설명하시오.
+### RxSwift는 왜 MVC가 아닌 MVVM과 잘 어울릴까요?
