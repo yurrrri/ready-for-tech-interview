@@ -18,6 +18,10 @@
 
 1. [운영체제](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C.md)
 
+## 📡 네트워크
+
+1. [네트워크](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC.md)
+
 ## 🎸 기타
 
 1. [개발 상식](https://github.com/yurrrri/ready-for-tech-interview/blob/main/ETC/%EA%B0%9C%EB%B0%9C%20%EA%B4%80%EB%A0%A8%20%EC%83%81%EC%8B%9D.md)
