@@ -248,7 +248,6 @@ https://ios-development.tistory.com/800
 ### selector는 무엇인가. 어떻게 불러내는가.
 
 
-
 ## Autolayout
 
 ### 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지
@@ -325,6 +324,16 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 
 - Autolayout은 뷰와의 관계에 제약을 두어 레이아웃을 짜는 방식이며, Frame-based layout은 view의 frame을 직접 지정하여 레이아웃을 짜는 방식입니다.
 - Autolayout은 뷰 간의 관계로 정의하기 때문에 기기별로 대응이 가능하다는 장점이 있는 반면에 Frame-based layout은 그렇지 않아서 기기 별로 대응하는 레이아웃을 별도로 구성해야한다는 번거로움이 있습니다.
+
+
+## GCD, 동시성 프로그래밍
+
+### NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.
+### GCD API 동작 방식과 필요성에 대해 설명하시오.
+### Global DispatchQueue 의 Qos 에는 어떤 종류가 있는지, 각각 어떤 의미인지 설명하시오.
+### GCD의 원리는 어떻게 되나요?
+### GCD의 Queue 종류는 어떤게 있나요?
+### 그럼, 한 화면에 썸네일이 100개 정도 있다고 치고, 100개의 각각의 통신을 하게 된다면, GCD는 이걸 버텨낼까요? GCD는 몇가지의 쓰레드까지 가능할까요? 해결 방법은?
 
 #### 질문 출처
 
