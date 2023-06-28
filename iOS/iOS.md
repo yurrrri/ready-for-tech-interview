@@ -36,6 +36,10 @@
 
 #### 뷰는 언제 그리나요?
 
+#### 스토리보드 혹은 xib 파일은 언제 불리나요?
+
+#### API 통신은 생명주기 어느 메서드에서 하는것이 적당할까요?
+
 ### UIWindow 객체의 역할은 무엇인가?
 
 - UIView의 컨테이너 역할로서, 앱 컨텐츠를 보여주고 이벤트를 뷰에 전달하는 역할을 합니다.
@@ -247,6 +251,8 @@ https://ios-development.tistory.com/800
 #### First Responder 역할에 대해 설명하시오.
 ### selector는 무엇인가. 어떻게 불러내는가.
 
+- selector 뒤에 명시한 속성이나 메소드를 가리키기 위한 문법이며 주로 코드로 UI를 짤 때 유저의 이벤트가 발생할 때 어떤 메소드를 실행할 것인지 지정할 때 많이 사용함
+
 
 ## Autolayout
 
@@ -308,6 +314,8 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 - 협업 시, 스토리보드를 분리하지 않는 경우 conflict가 날 때 해결이 어려워진다.
 - 데이터의 흐름을 스토리보드만으로 알기 어렵다는 단점이 있다.
 
+#### Storyboard에서 충돌이 이미 발생했을 때 어떻게 해결하는가?
+
 ### Safearea에 대해서 설명하시오.
 
 - iOS 11이후 등장한 개념으로, 노치나 하단 홈에 의해 가려질 수 있는 부분에 대한 마진을 자체적으로 가지는 영역입니다.
@@ -325,6 +333,11 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 - Autolayout은 뷰와의 관계에 제약을 두어 레이아웃을 짜는 방식이며, Frame-based layout은 view의 frame을 직접 지정하여 레이아웃을 짜는 방식입니다.
 - Autolayout은 뷰 간의 관계로 정의하기 때문에 기기별로 대응이 가능하다는 장점이 있는 반면에 Frame-based layout은 그렇지 않아서 기기 별로 대응하는 레이아웃을 별도로 구성해야한다는 번거로움이 있습니다.
 
+### 오토레이아웃이 깨졌을 때 어떻게 대처하는가
+
+
+
+<br/>
 
 ## GCD, 동시성 프로그래밍
 
