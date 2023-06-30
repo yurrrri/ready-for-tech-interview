@@ -54,9 +54,22 @@
 - sceneWillResignActive는 액티브 상태에서 인 액티브 상태로 진입될 때 호출되고
 - sceneDidBecomeBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
 
+### Delegate 패턴이란 무엇인가요? Delegate 패턴을 활용하는 경우를 예를 들어 설명하시오.
+
+- 특정 인스턴스가 다른 인스턴스의 프로토콜을 준수하여 해야할 일을 대신 수행하는 패턴을 델리게이트 패턴이라고 합니다.
+- 활용 예시로는, UITableViewDelegate 프로토콜을 준수하여 테이블뷰를 뷰컨트롤러에 띄워주거나, UITextField에서 입력이 시작했을 때의 동작을 UITextFieldDelegate 프로토콜을 준수함으로써 대신 수행할 수 있습니다.
+
 ### NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
 - NotificationCenter는 싱글톤 객체가 있는데, Notification을 보낼 객체들을 observer에 저장을 한 이후에 post를 하게 되면, Notification의 옵저버에 등록된 객체 모두에게 Notification을 보내게 됩니다.
 - 활용방안으로는 앱 내에서 공식적으로 연결될 수 없는 컴포넌트 간 상호작용이 필요한 경우에 활용되는데, 예를들어 앱이 백그라운드에 진입했을 때 뷰컨트롤러에서 특정 액션을 취해야 한다거나 키보드가 등장할 때 키보드 크기를 가져와서 뷰컨트롤러에서 크기 만큼 입력창의 y값을 조정한다거나 등에서 활용됩니다.
+
+### Delegates와 Notification 방식의 차이점에 대해 설명하시오.
+
+- delegate 방식은 주로 이벤트를 1:1로 전달할 때 많이 사용됩니다. 주로 protocol을 정의하고 이를 이벤트를 대신 처리할 객체가 채택하여 사용하게 됩니다.
+이에 따라 제 3 객체를 필요로 하지 않지만, 많은 객체에게 이벤트를 알리고 싶을 경우 많은 코드가 필요하여 비효율적이라는 단점이 있습니다.
+
+- notification 방식은 이벤트를 1:N으로 전달할 때 용이합니다. NotificationCenter라는 싱글톤객체를 기반으로 이벤트 발생여부를 옵저버를 등록한 객체에게 전달하는 방식으로 구성됩니다. 
+따라서 다수의 객체에게 손쉽게 이벤트 전달이 가능합니다. 하지만 제 3 객체를 필수적으로 필요로 하며, key값으로 발신-수신을 해야하는 구조이기 때문에 컴파일 중 수신여부를 확인하기 어렵다는 단점이 있습니다.
 
 ### TableView와 CollectionView의 차이점을 설명하시오.
 - TableView는 세로 스크롤만 가능하지만 CollectionView는 세로 혹은 가로 스크롤 모두 가능하고, flowLayout을 통해 다양한 레이아웃의 리스트를 구현할 수 있다는 점에서 차이가 있습니다.
@@ -246,17 +259,24 @@ https://ios-development.tistory.com/800
 
 ### MVVM, MVI, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오.
 ### 의존성 주입에 대하여 설명하시오.
-### CocoaPod을 gitignore에 넣어야 하는이유?
 ### Responder Chain은 무엇이고, 구조가 어떻게 되어있는가?
+
+- responder chain은 이벤트를 first responder에서부터 이벤트가 처리될 때까지 상위 뷰인 UIView에서 UIViewController, UIWindow까지 거슬러 올라가서 이벤트를 전달하는 구조입니다.
+
 #### First Responder 역할에 대해 설명하시오.
+
+- 이벤트 발생시 가장 먼저 이벤트를 받는 responder로, responder chain중에 가장 첫번째로 이벤트를 처리함
+
 ### selector는 무엇인가. 어떻게 불러내는가.
 
 - selector 뒤에 명시한 속성이나 메소드를 가리키기 위한 문법이며 주로 코드로 UI를 짤 때 유저의 이벤트가 발생할 때 어떤 메소드를 실행할 것인지 지정할 때 많이 사용함
 
+### Cocoapod을 gitignore에 넣어야하는 이유는 뭘까요?
+
 
 ## Autolayout
 
-### 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지
+### 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
 
 https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html#//apple_ref/doc/uid/TP40010853-CH16-SW1 <br/>
 https://nsios.tistory.com/99 <br/>
@@ -312,7 +332,6 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 - 앱의 규모가 커질수록 화면 로딩이 무거워진다.
 - IBOutlet이나 IBAction의 연결이 끊어졌을 때 파악이 어렵다.
 - 협업 시, 스토리보드를 분리하지 않는 경우 conflict가 날 때 해결이 어려워진다.
-- 데이터의 흐름을 스토리보드만으로 알기 어렵다는 단점이 있다.
 
 #### Storyboard에서 충돌이 이미 발생했을 때 어떻게 해결하는가?
 
@@ -325,8 +344,8 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/AnatomyofaConstraint.html
 
 - left constraint는 절대적인 개념으로, 항상 화면의 왼쪽을 가리킵니다.
-- leading constraint는 장치의 국가 설정에 영향을 받게 되는데, 국가별 읽는 방향에 따라 방향이 달라진다. 예를들어 오른쪽에서 왼쪽으로 읽는 문화권의 경우 leading이 오른쪽, trailing이 왼쪽을 가리키게 된다
-- 따라서 애플은 leading constraint 사용을 권장하고있음.
+- leading constraint는 장치의 국가 설정에 영향을 받게 되는데, 국가별 읽는 방향에 따라 방향이 달라진다. 예를들어 아랍권 국가의 경우 leading이 오른쪽, trailing이 왼쪽을 가리키게 된다
+- 따라서 애플은 leading과 trailing 사용을 권장하고있음.
 
 ### Auto Layout과 Frame-based Layout의 차이점은 무엇인가요?
 
@@ -335,6 +354,7 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 
 ### 오토레이아웃이 깨졌을 때 어떻게 대처하는가
 
+### 뷰 디버깅은 어떻게 하는지?
 
 
 <br/>
@@ -348,8 +368,10 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 ### GCD의 Queue 종류는 어떤게 있나요?
 ### 그럼, 한 화면에 썸네일이 100개 정도 있다고 치고, 100개의 각각의 통신을 하게 된다면, GCD는 이걸 버텨낼까요? GCD는 몇가지의 쓰레드까지 가능할까요? 해결 방법은?
 
+<br/>
+
 #### 질문 출처
 
 https://github.com/JeaSungLEE/iOSInterviewquestions
 
-면접 스터디에서 나온 꼬리질문 추가
+면접 스터디에서 나온 꼬리질문, 면접 경험에서 나온 질문
