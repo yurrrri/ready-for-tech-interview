@@ -7,13 +7,13 @@
 - iOS 13 이후에 멀티 윈도우가 지원되면서, 기존에 App Delegate가 앱의 UI 상태와 프로세스를 모두 관리하던 것에서 Scene 별로 UI 상태를 관리할 필요성이 생기면서 Scene의 UI 상태를 관리하는 것이 분리된 개념이 Scene Delegate입니다.
 - Scene Delegate의 메소드를 통해 씬의 액티브 상태/포그라운드 상태/백그라운드 상태/인 액티브 상태일 때의 작업을 수행할 수 있습니다.
 
-#### App의 상태에는 어떤 것들이 있나요?
+### App의 상태에는 어떤 것들이 있나요?
 
 - Not running, Foreground, Foreground에서도 2가지로 나뉘는데 In Active, Active가 있으며 Background, Suspended가 있습니다.
 
 ### App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
 
-- Not running은 앱이 아직 실행되지 않은 상태, Inactive는 실행되고 있지만 이벤트를 받을 수 없는 상태, Active는 포그라운드에 있으면서 사용자가 실제로 앱을 사용할 수 있는, 즉 앱이 이벤트를 받을 수 있는 상태, Background는 백그라운드에서 코드를 실행중인 상태, Suspended는 백그라운드에서 코드를 실행중이지 않는, 앱이 종료된 상태입니다.
+- Not running은 앱이 아직 실행되지 않은 상태, Inactive는 실행되고 있지만 이벤트를 받을 수 없는 상태, Active는 포그라운드에 있으면서 사용자가 실제로 앱을 사용할 수 있는, 즉 앱이 이벤트를 받을 수 있는 상태, Background는 백그라운드에서 코드를 실행중인 상태, Suspended는 백그라운드에서 메모리는 남아있으나 코드를 실행중인 상태는 아닌 상황입니다.
 
 ### 앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?
 
@@ -26,19 +26,19 @@
 
 ### ViewController의 생명주기를 설명하시오.
 
-- ViewController의 생명주기로 init, loadView, viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear, viewDidDisappear, viewDidUnload가 있습니다.
-- init은 뷰컨트롤러를 생성할 때 호출되며, 저장 프로퍼티를 초기화할 때 사용되고
-- loadView는 뷰컨트롤러에 뷰를 할당하고
-- viewDidLoad는 뷰가 완전히 메모리에 올라와있을 때 호출되어서 주로 초기값을 세팅할 때 해당 메소드에서 초기화를 하게 됩니다.
-- viewWillAppear는 뷰가 사용자에게 보이기 직전에 호출되는데, 다른 뷰컨트롤러에 갔다가 다시 올 때 이 메소드부터 호출됩니다.
-- viewDidAppear는 뷰가 사용자에게 완전히 보이기 시작할 때 호출되며, 애니메이션을 이 시점에 그리게 됩니다.
-- viewWillDisappear는 뷰가 뷰 계층에서 제거되기 직전에 호출되며, viewDidDisappear는 뷰가 뷰계층에서 완전히 사라지고 나서 호출되는 메소드입니다.
+- ViewController의 생명주기에는 loadView, viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear, viewDidDisappear가 있습니다.
+- loadView는 뷰컨트롤러와 연관된 뷰를 메모리에 올리는 과정으로, 코드로 짠 뷰의 경우 해당 시점에 교체할 수 있습니다.
+- viewDidLoad는 뷰컨트롤러가 초기화되면서 최초 한번 호출되는 메서드로, 주로 뷰에 필요한 속성을 초기화할 때 사용합니다.
+- viewWillAppear는 뷰가 완전히 보이기 직전, viewDidAppear는 뷰에 완전히 보일 때 호출되며 주로 애니메이션이나 타이머같은, 화면에 보일 때 처리해도 무관한 작업들을 진행합니다.
+- viewWillDisappear, viewDidDisappear는 각각 뷰가 사라지기 직전 / 뷰가 완전히 보이지 않을 때 호출되며 뷰가 사라지기 직전 저장해야하는 정보들을 저장합니다. 
 
-#### 뷰는 언제 그리나요?
+### 스토리보드 혹은 xib 파일은 언제 불리나요?
 
-#### 스토리보드 혹은 xib 파일은 언제 불리나요?
+- loadView에서 뷰를 메모리에 올립니다.
 
-#### API 통신은 생명주기 어느 메서드에서 하는것이 적당할까요?
+### API 통신은 생명주기 어느 메서드에서 하는것이 적당할까요?
+
+- 사용자에게 앱을 보여줄 때마다 새로운 내용을 업데이트할 필요가 있을 때, viewWillAppear에서 호춣하는 것이 적당할것 같습니다.
 
 ### UIWindow 객체의 역할은 무엇인가?
 
@@ -93,7 +93,7 @@ https://babbab2.tistory.com/45
 - 따라서 frame의 origin 초기값은 슈퍼뷰에서 얼마만큼 떨어져있는가 이고, bounds의 origin 초기값은 항상 (0,0) 이 됩니다.
 - 만약에 frame의 origin을 변경하게 되면 슈퍼로부터의 위치가 변화게 되고, bounds의 origin을 변경하면 해당 뷰를 바라보는 viewport의 위치가 이동하게 됩니다.
 
-#### 그럼 bounds와 frame은 각각 어쩔때 사용하는 것이 좋을까요?
+### 그럼 bounds와 frame은 각각 어쩔때 사용하는 것이 좋을까요?
 
 - frame은 UIView의 위치와 크기를 설정할 때 사용하며, bounds는 View를 회전한 후의 실제 크기를 알고 싶거나 ScrollView에서 특정 위치로 스크롤하여 해당 부분을 보여주고 싶을 때 사용합니다.
 
@@ -110,7 +110,7 @@ https://cali-log.oopy.io/082474c8-2668-436b-af2f-f41fe891e1fb
 - 뷰로부터 사용자 액션을 전달받아 이를 모델에 전달하며, 모델 데이터의 변경이 발생했을 경우 해당 내용을 통해 뷰를 업데이트하는 역할을 합니다.
 - 자신에게 속한 뷰의 크기를 조정하는 역할을 합니다. 
 
-### UIViewController의 상위 클래스는 무엇인가요? 해당 클래스의 역할은 무엇인가요?
+### ❗️UIViewController의 상위 클래스는 무엇인가요? 해당 클래스의 역할은 무엇인가요?
 
 - UIViewController는 UIResponder 추상클래스를 구현하고 있습니다.
 - (UIResponder 공부)
@@ -150,12 +150,12 @@ Message UI (메시지 보내기)
 **Core Data**
 - UserDefaults 보다는 복잡하고 큰 데이터를 영구적으로 저장하기에 적합하며, Entity 기반으로 앱의 모델을 관리하는 프레임워크입니다.
 
-#### User Defaults에 struct나 class를 저장할 수 있나요?
+### User Defaults에 struct나 class를 저장할 수 있나요?
 
 - struct나 class와 같은 사용자 정의 타입은 NsData 형식으로 변경한다음, NSKeyedArchiver를 이용하여 저장할 수 있습니다.
 - 가져올때는 NsKeyedUnArchiever로 객체를 복구해서 가져올 수 있습니다.
 
-#### CoreData와 같은 데이터베이스의 차이점
+### ❗️CoreData와 같은 데이터베이스의 차이점
 
 ### 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
 
@@ -169,7 +169,7 @@ Message UI (메시지 보내기)
 
 이 때 2가지 방식 모두 init과 required init을 구현해야한다는 특징이 있습니다.
 
-#### init과 required init을 반드시 구현해야한다고 했는데 무슨 의미인가요?
+### init과 required init을 반드시 구현해야한다고 했는데 무슨 의미인가요?
 
 - UIView는 지정 생성자를 생략하면 자동으로 상속하는데, 지정 생상자를 통해 커스텀하게 view를 초기화하게 되면 required init도 반드시 구현해야하므로, 2가지 메소드를 필수적으로 구현해야합니다.
 
@@ -181,7 +181,7 @@ Message UI (메시지 보내기)
     - 뷰는 0개 이상의 SubView를 가지게 되는데,  이 SubView들의 사이즈 혹은 위치를 관리하게 됩니다.
     - UIResponder의 하위 클래스로서, 터치와 그 외의 이벤트에 대해 응답할 수 있습니다. 이 제스쳐를 핸들링하기 위해 gesture recognizer를 추가할 수 있습니다.
 
-#### 사용자의 액션이 들어왔을 때 UIView와 UIViewController 각각의 역할에 대해 설명하시오.
+### ❗️사용자의 액션이 들어왔을 때 UIView와 UIViewController 각각의 역할에 대해 설명하시오.
 
 
 ### UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
@@ -201,6 +201,14 @@ https://ios-development.tistory.com/977
 
 ### setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
 
+https://zeddios.tistory.com/359
+
+- View의 drawing cycle과 관련한 메서드이며, setNeedsLayout은 다음 drawing cycle에 바로 크기나 위치의 변경사항을 업데이트 해달라 라는 메소드이며, setNeedsDisplay는 View의 컨텐트 (배경색이나 이미지같은)를 바로 다음 drawing cycle에 다시 그려줘 라고 명시하는 메소드입니다.
+
+### layoutIfNeeded()는 뭔가요?
+
+- drawing cycle을 기다리지 않고 호출 즉시 크기나 위치를 다시 적용해달라고 명시하는 메소드
+
 ### stackView의 장점과 단점에 대해서 설명하시오.
 
 장점으로는 다음과 같습니다.
@@ -212,15 +220,23 @@ https://ios-development.tistory.com/977
 
 - stackView의 SubView는 StackView가 지정한 뷰의 배치나 정렬을 따르기에, 개별 SubView의 디테일한 위치나 크기 조정은 어려울 수 있습니다.
 
-### App thinning에 대해서 설명하시오.
+### ❗️App thinning에 대해서 설명하시오.
 
 ### 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
 
-- UIApplication 객체가 생성되며, 이 객체는 
+https://developer.apple.com/documentation/uikit/uiapplication
 
-### @Main에 대해서 설명하시오.
+- UIApplictaion 객체를 생성합니다. 앱당 싱글톤으로 1개의 인스턴스가 존재하는 개념이며 앱의 상태를 AppDelegate의 UIApplicationDelegate에게 전달하게 됩니다.
+
+### @Main에 대해서 설명하시오. 
+
+- 앱을 시작할 때의 진입점을 지정하는 어노테이션으로, 
+
+### 앱 생명주기에서 didFinishLaunching() 이전에는 어떤 과정이 있나요? 
 
 ### UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
+
+- 
 
 ### Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
 
@@ -263,7 +279,7 @@ https://ios-development.tistory.com/800
 
 - responder chain은 이벤트를 first responder에서부터 이벤트가 처리될 때까지 상위 뷰인 UIView에서 UIViewController, UIWindow까지 거슬러 올라가서 이벤트를 전달하는 구조입니다.
 
-#### First Responder 역할에 대해 설명하시오.
+### First Responder 역할에 대해 설명하시오.
 
 - 이벤트 발생시 가장 먼저 이벤트를 받는 responder로, responder chain중에 가장 첫번째로 이벤트를 처리함
 
@@ -272,6 +288,7 @@ https://ios-development.tistory.com/800
 - selector 뒤에 명시한 속성이나 메소드를 가리키기 위한 문법이며 주로 코드로 UI를 짤 때 유저의 이벤트가 발생할 때 어떤 메소드를 실행할 것인지 지정할 때 많이 사용함
 
 ### Cocoapod을 gitignore에 넣어야하는 이유는 뭘까요?
+
 
 
 ## Autolayout
@@ -293,7 +310,7 @@ https://nsios.tistory.com/99 <br/>
 뷰는 [] (대괄호) 사용
 뷰간연결은 - (하이픈)을 사용
 
-#### 코드로 작성했을 때의 장단점은 뭔가요?
+### 코드로 작성했을 때의 장단점은 뭔가요?
 
 https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code
 
@@ -333,7 +350,7 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 - IBOutlet이나 IBAction의 연결이 끊어졌을 때 파악이 어렵다.
 - 협업 시, 스토리보드를 분리하지 않는 경우 conflict가 날 때 해결이 어려워진다.
 
-#### Storyboard에서 충돌이 이미 발생했을 때 어떻게 해결하는가?
+### Storyboard에서 충돌이 이미 발생했을 때 어떻게 해결하는가?
 
 ### Safearea에 대해서 설명하시오.
 
