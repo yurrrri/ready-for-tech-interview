@@ -230,13 +230,15 @@ https://developer.apple.com/documentation/uikit/uiapplication
 
 ### @Main에 대해서 설명하시오. 
 
-- 앱을 시작할 때의 진입점을 지정하는 어노테이션으로, 
+- 앱을 시작할 때의 진입점을 지정하는 어노테이션으로, iOS앱에서는 App Delegate에 지정되어있어 App Delegate를 진입점으로 하여, 앱 상태를 관리하는 UIApplication 인스턴스 생성 및 메인 UI를 로드하게 됩니다.
 
 ### 앱 생명주기에서 didFinishLaunching() 이전에는 어떤 과정이 있나요? 
 
+- App Delegate를 진입점으로 하여, 앱 상태를 관리하는 UIApplication 인스턴스 생성 및 메인 UI를 로드, 앱 초기화를 진행하게 됩니다.
+
 ### UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
 
-- 
+- UIApplicationMain()
 
 ### Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
 
@@ -269,7 +271,7 @@ https://labs.brandi.co.kr//2019/12/19/kimjh.html
 
 https://ios-development.tistory.com/800
 - 두 가지 라이브러리는 라이브러리를 프로젝트에 어떤 시점에 포함시키는지에 따라 차이가 있습니다.
-- static library는 object 언어에서 실행파일로 변경될 때 포함되는 라이브러리고, dynamic library는 런타임 중에 해당 라이브러리를 연결합니다.
+- static library는 컴파일 단계에서 object 언어에서 실행파일로 변경될 때 포함되는 라이브러리고, dynamic library는 런타임 중에 해당 라이브러리를 연결합니다.
 - 이에 따라 static library는 메모리 효율이 좋지 않다라는 단점이 있고, dynamic library는 그에 비해 필요할 때마다 라이브러리를 불러오므로 메모리 효율이 좋다는 장점이 있습니다.
 - 또한, static library는 추가 작업없이 라이브러리를 사용할 수 있다는 장점이 있는 반면에 dynamic library는 라이브러리를 찾아서 올리는 시간이 추가적으로 소요되므로 시간이 상대적으로 더 걸린다는 단점이 있습니다.
 
