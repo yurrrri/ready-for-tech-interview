@@ -275,7 +275,7 @@ https://ios-development.tistory.com/800
 - 이에 따라 static library는 메모리 효율이 좋지 않다라는 단점이 있고, dynamic library는 그에 비해 필요할 때마다 라이브러리를 불러오므로 메모리 효율이 좋다는 장점이 있습니다.
 - 또한, static library는 추가 작업없이 라이브러리를 사용할 수 있다는 장점이 있는 반면에 dynamic library는 라이브러리를 찾아서 올리는 시간이 추가적으로 소요되므로 시간이 상대적으로 더 걸린다는 단점이 있습니다.
 
-### MVVM, MVI, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오.
+### MVVM, MVI, Ribs, Viper 등 자신이 알고있는 아키텍쳐를 설명하시오.
 ### 의존성 주입에 대하여 설명하시오.
 ### Responder Chain은 무엇이고, 구조가 어떻게 되어있는가?
 
@@ -337,8 +337,8 @@ https://velog.io/@eddy_song/intrinsic-content-size
 ### hugging, resistance에 대해서 설명하시오.
 
 - intrinsic size가 있는 뷰에 개발자가 특정 width나 height에 대한 조건을 주었을 때, 어떤 사항을 더 우선순위로 하여 사이즈를 조정해줄 것인가와 관련한 속성입니다.
-- hugging은 intrinsic size 이상으로 늘어나지 않으려고 하도록 조건을 주는것이며, Resistance는 intrinsic size 이하로 줄어들지 않으려고 하도록 조건을 주는 것입니다.
-- 디폴트로 hugging은 250, resistance는 750로 세팅되어있으며 만약 특정 뷰가 이 이상 더 늘어나지 않도록 하고자하면 해당 뷰의 hugging의 우선순위 값을 250 이상으로 늘려주면 된다.
+- hugging은 intrinsic size 이상으로 늘어나지 않으려고 하도록 하는 속성이며, Resistance는 intrinsic size 이하로 줄어들지 않으려고 하도록 하는 속성입니다.
+- 디폴트로 hugging은 250, resistance는 750로 세팅되어있으며 만약 특정 뷰가 이 이상 더 늘어나지 않도록/줄어들지 않도록 하고자하면 해당 뷰의 hugging의 우선순위 값을 기존값보다 키워주면 됩니다.
 
 ### 스토리보드를 이용했을때의 장단점을 설명하시오.
 
@@ -380,7 +380,6 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 
 ## GCD, 동시성 프로그래밍
 
-### NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.
 ### GCD API 동작 방식과 필요성에 대해 설명하시오.
 ### Global DispatchQueue 의 Qos 에는 어떤 종류가 있는지, 각각 어떤 의미인지 설명하시오.
 ### GCD의 원리는 어떻게 되나요?
