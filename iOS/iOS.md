@@ -110,10 +110,6 @@ https://cali-log.oopy.io/082474c8-2668-436b-af2f-f41fe891e1fb
 - 뷰로부터 사용자 액션을 전달받아 이를 모델에 전달하며, 모델 데이터의 변경이 발생했을 경우 해당 내용을 통해 뷰를 업데이트하는 역할을 합니다.
 - 자신에게 속한 뷰의 크기를 조정하는 역할을 합니다. 
 
-### ❗️UIViewController의 상위 클래스는 무엇인가요? 해당 클래스의 역할은 무엇인가요?
-
-- UIViewController는 UIResponder 추상클래스를 구현하고 있습니다.
-- (UIResponder 공부)
 
 ### UINavigationController 의 역할이 무엇인지 설명하시오.
 
@@ -154,8 +150,6 @@ Message UI (메시지 보내기)
 
 - struct나 class와 같은 사용자 정의 타입은 NsData 형식으로 변경한다음, NSKeyedArchiver를 이용하여 저장할 수 있습니다.
 - 가져올때는 NsKeyedUnArchiever로 객체를 복구해서 가져올 수 있습니다.
-
-### ❗️CoreData와 같은 데이터베이스의 차이점
 
 ### 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
 
@@ -277,6 +271,11 @@ https://ios-development.tistory.com/800
 
 ### MVVM, MVI, Ribs, Viper 등 자신이 알고있는 아키텍쳐를 설명하시오.
 ### 의존성 주입에 대하여 설명하시오.
+
+- 클래스 외부에서 객체를 생성해서 그 객체를 클래스 내부에 주입하는것을 의존성 주입이라고 합니다.
+클래스 내부에서 객체를 직접생성하지 않기때문에 객체간 결합도를 낮출 수 있으며, Swift에서는 프로토콜을 이용하여 의존성 문제를 해결합니다.
+결합도가 낮아진다는것은 한 클래스가 변경될 경우 다른클래스가 변경될 필요성이 적어진다는 뜻으로도 이해할 수 있습니다.
+
 ### Responder Chain은 무엇이고, 구조가 어떻게 되어있는가?
 
 - responder chain은 이벤트를 first responder에서부터 이벤트가 처리될 때까지 상위 뷰인 UIView에서 UIViewController, UIWindow까지 거슬러 올라가서 이벤트를 전달하는 구조입니다.
