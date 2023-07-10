@@ -25,3 +25,5 @@
 ### Subject와 Driver의 차이를 설명하시오.
 ### Single, Completable, Maybe의 차이점에 대해 설명하고, 언제 적용하면 좋을지 설명하시오.
 ### RxSwift는 왜 MVC가 아닌 MVVM과 잘 어울릴까요?
+
+- RxSwift의 핵심은 로직의 변화를 관찰하여 변화 내용을 바로 UI에 바인딩함에 있기 때문에, ViewModel이 Model을 변화시킬 때 뷰가 이를 반영하는 로직에 잘 어울리게 됩니다.
