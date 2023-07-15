@@ -139,7 +139,11 @@ private는 기능을 정의하고 구현한 범위 내에서만 사용이 가능
 
 - class, struct, enum 타입 혹은 배열, 딕셔너리, set 등의 collection 타입에서 대괄호를 통해 속성이나 원소를 접근할 수 있는 문법
 
-#### ❗️String은 왜 subscript로 접근이 안되는지 설명하시오.
+#### String은 왜 subscript로 접근이 안되는지 설명하시오.
+
+- Swift의 String은 Struct타입이고, characters의 collection이다. 즉 Array<Element>의 element가 Character인 배열이다.
+- subscript로 접근이 안되는 이유는 Swift에서 Character는 크기가 가변적인 1개 이상의 Unicode Scalar로 이루어져 있으므로, 데이터가 불일치함이 원인이다.
+
 ### Singleton 패턴을 활용하는 경우를 예를 들어 설명하시오.
 
 - 싱글톤 패턴은 객체의 인스턴스가 오직 하나만 생성되어 전체 모듈에서 하나의 인스턴스만 사용하는 패턴입니다. 
