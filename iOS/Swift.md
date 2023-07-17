@@ -215,7 +215,6 @@ https://velog.io/@haze5959/Swift-some-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%96%B8%EC%A
 이름이 있고 관련한 함수로 부터 값을 캡쳐 할 수 있는 클로저 -> 중첩 함수
 경량화 된 문법으로 쓰여지고 관련된 문맥(context)으로부터 값을 캡쳐할 수 있는 이름이 없는 클로저 -> 클로저 표현
 
-#### ❗️클로저에서 내부의 순환참조를 방지하려면 어떻게해야하나요?
 #### 탈출 Closure에 대해 설명하시오.
 
 - 클로저의 실행이 해당 클로저를 사용하고 있던 함수를 벗어나서도 실행할 수 있는 클로저를 의미합니다. 즉, 함수의 실행을 벗어나서도 사용이 필요한 클로저를 앞에 @escaping 키워드를 붙여서 사용하는 클로저를 탈출 클로저라고 합니다.
@@ -243,11 +242,11 @@ https://velog.io/@haze5959/Swift-some-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%96%B8%EC%A
 
 ### ARC란 무엇인지 설명하시오.
 
-- Swift에서 클래스와 클로저같은 참조타입의 메모리를 자동으로 관리해주는 시스템
+- Swift에서 클래스와 클로저같은 참조타입의 메모리를 reference count의 증가/감소를 기반으로 해제 시점을 자동으로 관리해주는 시스템
 
 #### ARC를 컴파일단에서 관여하나요, 런타임단에서 관여하나요?
 
-- 컴파일단에서 컴파일러가 이미 인스턴스들의 해제 시점과 참조 횟수를 인지하고있습니다.
+- 컴파일단에서 컴파일러가 이미 인스턴스들의 해제 시점과 참조 횟수를 인지하고 있어, reference count가 0이 되는 시점에 자동으로 해제를 진행하게 됩니다.
 
 ### Retain Count(=reference count) 방식에 대해 설명하시오.
 
@@ -275,10 +274,17 @@ https://velog.io/@haze5959/Swift-some-%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%96%B8%EC%A
 
 - 약한 참조나 비소유 참조를 통해서 가리킬때 Reference count가 증가하지 않도록 조치합니다.
 
-### ❗️ Retain cycle과 escaping 클로저와의 관계는?
+### Retain cycle과 escaping 클로저와의 관계는?
 
 https://swifty-cody.tistory.com/11
+https://noah0316.github.io/Swift/2022-04-08-[weak-self]-%EB%AC%B4%EC%A1%B0%EA%B1%B4-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B2%8C-%EB%A7%9E%EB%8A%94%EA%B1%B8%EA%B9%8C/
 
+- escaping 클로저는 함수가 끝남에도 오랫동안 남아있는 클로저를 의미하는데, 즉 오래 남아있어야하기 때문에 힙 영역에 메모리가 할당됩니다.
+- 이떄 이스케이핑 클로저가 클래스의 멤버로서 존재하고, 클로저에서 인스턴스 자기 자신(self)를 가리키게 되면 강한 참조 사이클이 발생하게 됩니다.
+
+### 클로저에서 내부의 순환참조를 방지하려면 어떻게해야하나요?
+
+- [weak 혹은 unowned self]를 붙임으로써 약하게 참조하도록 합니다.
 
 ### ARC, MRC 차이점
 
@@ -318,11 +324,3 @@ https://www.hackingwithswift.com/articles/205/whats-the-difference-between-map-f
 - flatMap도 마찬가지로 nil을 반환하지만, 2차원 이상의 배열을 1차원 배열로 반환한다는 차이점이 있음
 
 <br/>
-
-
-## 질문 출처
-
-https://github.com/JeaSungLEE/iOSInterviewquestions
-
-iOS 스터디에서 나온 꼬리질문
-
