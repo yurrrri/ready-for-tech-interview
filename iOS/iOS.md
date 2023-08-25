@@ -59,6 +59,9 @@
 - 특정 인스턴스가 다른 인스턴스의 프로토콜을 준수하여 해야할 일을 대신 수행하는 패턴을 델리게이트 패턴이라고 합니다.
 - 활용 예시로는, UITableViewDelegate 프로토콜을 준수하여 테이블뷰를 뷰컨트롤러에 띄워주거나, UITextField에서 입력이 시작했을 때의 동작을 UITextFieldDelegate 프로토콜을 준수함으로써 대신 수행할 수 있습니다.
 
+### ❗️ Delegate란 무엇인지 설명하고, retain 되는지 안되는지 그 이유를 함께 설명하시오.
+
+
 ### NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
 - NotificationCenter는 싱글톤 객체가 있는데, Notification을 보낼 객체들을 observer에 저장을 한 이후에 post를 하게 되면, Notification의 옵저버에 등록된 객체 모두에게 Notification을 보내게 됩니다.
 - 활용방안으로는 앱 내에서 공식적으로 연결될 수 없는 컴포넌트 간 상호작용이 필요한 경우에 활용되는데, 예를들어 앱이 백그라운드에 진입했을 때 뷰컨트롤러에서 특정 액션을 취해야 한다거나 키보드가 등장할 때 키보드 크기를 가져와서 뷰컨트롤러에서 크기 만큼 입력창의 y값을 조정한다거나 등에서 활용됩니다.
@@ -100,6 +103,8 @@ https://babbab2.tistory.com/45
 ### iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인지 설명하시오
 
 - UIKit, SwiftUI
+
+### ❗️ UIKit 클래스들을 다룰 때 꼭 처리해야하는 애플리케이션 쓰레드 이름은 무엇인가?
 
 ### 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
 
@@ -288,8 +293,7 @@ https://ios-development.tistory.com/800
 
 - selector 뒤에 명시한 속성이나 메소드를 가리키기 위한 문법이며 주로 코드로 UI를 짤 때 유저의 이벤트가 발생할 때 어떤 메소드를 실행할 것인지 지정할 때 많이 사용함
 
-### Cocoapod을 gitignore에 넣어야하는 이유는 뭘까요?
-
+### ❗️Cocoapod을 gitignore에 넣어야하는 이유는 뭘까요?
 
 
 ## Autolayout
@@ -370,9 +374,9 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 - Autolayout은 뷰와의 관계에 제약을 두어 레이아웃을 짜는 방식이며, Frame-based layout은 view의 frame을 직접 지정하여 레이아웃을 짜는 방식입니다.
 - Autolayout은 뷰 간의 관계로 정의하기 때문에 기기별로 대응이 가능하다는 장점이 있는 반면에 Frame-based layout은 그렇지 않아서 기기 별로 대응하는 레이아웃을 별도로 구성해야한다는 번거로움이 있습니다.
 
-### 오토레이아웃이 깨졌을 때 어떻게 대처하는가
+### ❗️ 오토레이아웃이 깨졌을 때 어떻게 대처하는가
 
-### 뷰 디버깅은 어떻게 하는지?
+### ❗️ 뷰 디버깅은 어떻게 하는지?
 
 
 <br/>
@@ -390,7 +394,7 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 
 - 메인스레드인 main 뷰, 메인 스레드 이외의 부가적인 작업열인 글로벌 큐, 사용자가 label을 통해 커스텀하여 사용 가능한 커스텀 큐가 있습니다.
 
-### 그럼, 한 화면에 썸네일이 100개 정도 있다고 치고, 100개의 각각의 통신을 하게 된다면, GCD는 이걸 버텨낼까요? GCD는 몇가지의 쓰레드까지 가능할까요? 해결 방법은?
+### ❗️ 그럼, 한 화면에 썸네일이 100개 정도 있다고 치고, 100개의 각각의 통신을 하게 된다면, GCD는 이걸 버텨낼까요? GCD는 몇가지의 쓰레드까지 가능할까요? 해결 방법은?
 
 
 
