@@ -204,6 +204,9 @@ https://babbab2.tistory.com/18
 
 ### ❗️property wrapper에 대해서 설명하시오.
 
+### ❗️available 키워드에 대해 설명하시오.
+
+### async, await이 무엇인지 알고있는지? 사용해본 경험이 있는지
 
 ### some 키워드에 대해 설명하시오.
 
