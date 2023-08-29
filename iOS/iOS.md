@@ -50,12 +50,13 @@
 
 <img src="https://github.com/yurrrri/ready-for-tech-interview/assets/37764504/7cd3b075-477a-4322-acf9-861e57d4824b" width="800" /> <br/>
 
-- iOS 13 이후로 멀티 윈도우 개념에서 기존의 Window가 Scene으로 대체되었기에, 상태 변화를 각각의 Scene 별로 관리하는 것으로 변경되면서 Scene Delegate에 상태 변화 메소드가 이전되어서 이 델리게이트의 메소드를 설명드리겠습다.
+- iOS 13 이후로 멀티 윈도우 개념에서 기존의 Window가 Scene으로 대체되었기에, 상태 변화를 각각의 Scene 별로 관리하는 것으로 변경되면서 Scene Delegate에 상태 변화 메소드가 이전되어서 이 델리게이트의 메소드를 설명드리겠습니다.
+- sceneWillConnectTo는 새로운 scene이 생성되어 앱에 연결되기 직전에 호출됩니다. 이 때 앱에 띄울 첫 화면이나 스토리보드를 설정하게됩니다.
 - sceneDidDisconnect는 앱 스위처에서 Scene Session이 완전히 종료되었을 때 호출되며,
 - sceneWillEnterForeground는 백그라운드에서 포그라운드로 진입될 때
-- sceneDidBecomActive는 인 액티브상태에서 액티브 상태로 진입하여 사용자가 앱을 사용할 수 있을 때 호출됩니다.
+- sceneDidBecomeActive는 인 액티브상태에서 액티브 상태로 진입하여 사용자가 앱을 사용할 수 있을 때 호출됩니다.
 - sceneWillResignActive는 액티브 상태에서 인 액티브 상태로 진입될 때 호출되고
-- sceneDidBecomeBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
+- sceneDidEnterBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
 
 #### 앱을 개발할 때 뷰컨트롤러에서 위 특정 앱 생명주기에 진입했는지, 진입한 경우 아는 방법에 대해 알고있는지?
 
