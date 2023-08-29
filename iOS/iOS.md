@@ -13,11 +13,12 @@
 
 ### App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
 
-- Not running은 앱이 아직 실행되지 않은 상태, Inactive는 실행되고 있지만 이벤트를 받을 수 없는 상태, Active는 포그라운드에 있으면서 사용자가 실제로 앱을 사용할 수 있는, 즉 앱이 이벤트를 받을 수 있는 상태, Background는 백그라운드에서 코드를 실행중인 상태, Suspended는 백그라운드에서 메모리는 남아있으나 코드를 실행중인 상태는 아닌 상황입니다.
+- Not running은 앱이 아직 실행되지 않은 상태, Inactive는 포그라운드에서 실행되고 있지만 이벤트를 받을 수 없는 상태, Active는 포그라운드에 있으면서 사용자가 실제로 앱을 사용할 수 있는, 즉 앱이 이벤트를 받을 수 있는 상태, Background는 백그라운드에서 코드를 실행중인 상태, Suspended는 백그라운드에서 메모리는 남아있으나 코드를 실행중인 상태는 아닌 상황입니다.
 
 ### 앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?
 
-- 포그라운드에 있을 때 앱의 리소스가 높은 우선순위로 사용되기 때문에 백그라운드 앱을 종료할 필요가 있고, 백그라운드에 있을 떄 가능한한 리소스를 최소화해야한다는 제약사항이 있습니다.
+- 앱이 포그라운드에 있을 때 앱의 리소스가 높은 우선순위로 사용되기 때문에 필요에따라 백그라운드에 실행되는 앱이 종료될 수 있습니다.
+- 앱이 백그라운드에 있을 경우에는 앱이 사용자의 화면에 가하는 이벤트를 받을 수 없고, 메모리 측면에서는 사용 가능한 메모리 리소스가 최소화되기 때문에 무거운 작업을 진행하기 어려울 수도 있습니다.
 
 ### 앱이 InActive 상태가 되는 시나리오를 설명하시오.
 
@@ -27,16 +28,16 @@
 ### ViewController의 생명주기를 설명하시오.
 
 - ViewController의 생명주기에는 loadView, viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear, viewDidDisappear가 있습니다.
-- loadView는 뷰컨트롤러와 연관된 뷰를 메모리에 올리는 과정으로, 코드로 짠 뷰의 경우 해당 시점에 교체할 수 있습니다.
+- loadView는 뷰컨트롤러와 연관된 뷰를 메모리에 올리는 과정으로, 코드로 짠 뷰의 경우 해당 시점에 뷰컨트롤러의 뷰를 교체할 수 있습니다.
 - viewDidLoad는 뷰컨트롤러가 초기화되면서 최초 한번 호출되는 메서드로, 주로 뷰에 필요한 속성을 초기화할 때 사용합니다.
 - viewWillAppear는 뷰가 완전히 보이기 직전, viewDidAppear는 뷰에 완전히 보일 때 호출되며 주로 애니메이션이나 타이머같은, 화면에 보일 때 처리해도 무관한 작업들을 진행합니다.
 - viewWillDisappear, viewDidDisappear는 각각 뷰가 사라지기 직전 / 뷰가 완전히 보이지 않을 때 호출되며 뷰가 사라지기 직전 저장해야하는 정보들을 저장합니다. 
 
-### 스토리보드 혹은 xib 파일은 언제 불리나요?
+#### 스토리보드 혹은 xib 파일은 언제 불리나요?
 
 - loadView에서 뷰를 메모리에 올립니다.
 
-### API 통신은 생명주기 어느 메서드에서 하는것이 적당할까요?
+#### API 통신은 생명주기 어느 메서드에서 하는것이 적당할까요?
 
 - 사용자에게 앱을 보여줄 때마다 새로운 내용을 업데이트할 필요가 있을 때, viewWillAppear에서 호춣하는 것이 적당할것 같습니다.
 
@@ -47,12 +48,18 @@
 
 ### 상태 변화에 따라 다른 동작을 처리하기 위한 App Delegate 메서드들을 설명하시오.
 
+<img src="https://github.com/yurrrri/ready-for-tech-interview/assets/37764504/7cd3b075-477a-4322-acf9-861e57d4824b" width="800" /> <br/>
+
 - iOS 13 이후로 멀티 윈도우 개념에서 기존의 Window가 Scene으로 대체되었기에, 상태 변화를 각각의 Scene 별로 관리하는 것으로 변경되면서 Scene Delegate에 상태 변화 메소드가 이전되어서 이 델리게이트의 메소드를 설명드리겠습다.
 - sceneDidDisconnect는 앱 스위처에서 Scene Session이 완전히 종료되었을 때 호출되며,
 - sceneWillEnterForeground는 백그라운드에서 포그라운드로 진입될 때
 - sceneDidBecomActive는 인 액티브상태에서 액티브 상태로 진입하여 사용자가 앱을 사용할 수 있을 때 호출됩니다.
 - sceneWillResignActive는 액티브 상태에서 인 액티브 상태로 진입될 때 호출되고
 - sceneDidBecomeBackground는 Scene session이 완전히 백그라운드로 진입할 때 호출됩니다.
+
+#### 앱을 개발할 때 뷰컨트롤러에서 위 특정 앱 생명주기에 진입했는지, 진입한 경우 아는 방법에 대해 알고있는지?
+
+- NotificationCenter의 observer를 앱 생명주기의 key로 값을 추가한 다음, 해당 생명주기에 진입했을 때의 observer가 현재 작동하는 observer와 일치한다면 특정 동작을 실행하도록 하면 된다.
 
 ### Delegate 패턴이란 무엇인가요? Delegate 패턴을 활용하는 경우를 예를 들어 설명하시오.
 
@@ -114,7 +121,6 @@ https://cali-log.oopy.io/082474c8-2668-436b-af2f-f41fe891e1fb
 - View Controller의 상위 클래스는 UIViewController입니다.
 - 뷰로부터 사용자 액션을 전달받아 이를 모델에 전달하며, 모델 데이터의 변경이 발생했을 경우 해당 내용을 통해 뷰를 업데이트하는 역할을 합니다.
 - 자신에게 속한 뷰의 크기를 조정하는 역할을 합니다. 
-
 
 ### UINavigationController 의 역할이 무엇인지 설명하시오.
 
@@ -262,9 +268,13 @@ https://neph3779.github.io/ios/WhatIsAppBundle/
 ### 다크모드를 지원하는 방법에 대해 설명하시오.
 
 https://labs.brandi.co.kr//2019/12/19/kimjh.html
-- UITraitCollection.userInterfaceStyle에서 dark 일 경우와 아닐 경우의 color를 각각 지정해주고
-- 이미지의 경우 Appreance에서 Any, Dark 속성을 주변 다크모드 일때와 아닐 떄의 이미지를 각각 추가할 수 있습니다.
-- 혹은 이미지에 tint color를 적용하여 변경할 수도 있습니다.
+- UITraitCollection.userInterfaceStyle 이라는 속성이 dark 일 경우와 아닐 경우의 color를 각각 지정해주게 되면 다크모드/라이트모드마다 다른 색상이 지정됩니다.
+- 이미지의 경우 Image Asset Catalog에서 Appreance에서 Any, Dark 속성을 주변 다크모드 일때와 아닐 떄의 이미지를 각각 추가할 수 있습니다. 이 경우에는 디자인팀과의 소통을 통해 다크모드일 경우에 어떤 이미지를 보여줄 것인지에 대한 논의와 리소스를 얻어오는 것이 필요합니다.
+- 혹은 이미지에 다크모드일 경우에 tint color를 입히는 방법을 적용할 수도 있습니다.
+
+#### 유저가 다크모드로 변경하더라도 기존과 동일한 레이아웃을 유지하려면 어떻게해야하는지 알고 계신가요?
+
+- info.plist의 Apperance 속성을 Light로 주면 다크모드여도 라이트모드와 동일한 레이아웃을 유지한다.
 
 ### Dynamic Library와 Static Library의 차이점에 대해 설명해보세요.
 
@@ -395,7 +405,6 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 - 메인스레드인 main 뷰, 메인 스레드 이외의 부가적인 작업열인 글로벌 큐, 사용자가 label을 통해 커스텀하여 사용 가능한 커스텀 큐가 있습니다.
 
 ### ❗️ 그럼, 한 화면에 썸네일이 100개 정도 있다고 치고, 100개의 각각의 통신을 하게 된다면, GCD는 이걸 버텨낼까요? GCD는 몇가지의 쓰레드까지 가능할까요? 해결 방법은?
-
 
 
 <br/>
