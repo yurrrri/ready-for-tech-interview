@@ -80,7 +80,7 @@
 이에 따라 제 3 객체를 필요로 하지 않지만, 많은 객체에게 이벤트를 알리고 싶을 경우 많은 코드가 필요하여 비효율적이라는 단점이 있습니다.
 
 - notification 방식은 이벤트를 1:N으로 전달할 때 용이합니다. NotificationCenter라는 싱글톤객체를 기반으로 이벤트 발생여부를 옵저버를 등록한 객체에게 전달하는 방식으로 구성됩니다. 
-따라서 다수의 객체에게 손쉽게 이벤트 전달이 가능합니다. 하지만 제 3 객체를 필수적으로 필요로 하며, key값으로 발신-수신을 해야하는 구조이기 때문에 컴파일 중 수신여부를 확인하기 어렵다는 단점이 있습니다.
+따라서 다수의 객체에게 손쉽게 이벤트 전달이 가능합니다. 하지만 observer라는 제 3 객체를 필수적으로 필요로 하며, key값으로 발신-수신을 해야하는 구조이기 때문에 컴파일 중에 수신이 올바르게 이루어지는지를 확인하기 어렵다는 단점이 있습니다.
 
 ### TableView와 CollectionView의 차이점을 설명하시오.
 - TableView는 세로 스크롤만 가능하지만 CollectionView는 세로 혹은 가로 스크롤 모두 가능하고, flowLayout을 통해 다양한 레이아웃의 리스트를 구현할 수 있다는 점에서 차이가 있습니다.
@@ -97,16 +97,17 @@
 
 ### Bounds 와 Frame 의 차이점을 설명하시오.
 
-https://zeddios.tistory.com/231
-https://babbab2.tistory.com/45
+https://zeddios.tistory.com/203
+https://babbab2.tistory.com/44
 
-- frame은 자신의 슈퍼뷰를 기준으로 하여 위치와 사이즈를 정의하며, bounds는 자신을 기준으로 하여 위치와 사이즈를 정의합니다.
+- frame은 자신의 슈퍼뷰를 기준으로 자기 자신의 위치와 사이즈를 정의하며, bounds는 superview와 무관하게 자신을 기준으로 하여 위치와 사이즈를 정의합니다.
 - 따라서 frame의 origin 초기값은 슈퍼뷰에서 얼마만큼 떨어져있는가 이고, bounds의 origin 초기값은 항상 (0,0) 이 됩니다.
 - 만약에 frame의 origin을 변경하게 되면 슈퍼로부터의 위치가 변화게 되고, bounds의 origin을 변경하면 해당 뷰를 바라보는 viewport의 위치가 이동하게 됩니다.
 
-### 그럼 bounds와 frame은 각각 어쩔때 사용하는 것이 좋을까요?
+#### 그럼 bounds와 frame은 각각 어쩔때 사용하는 것이 좋을까요?
 
-- frame은 UIView의 위치와 크기를 설정할 때 사용하며, bounds는 View를 회전한 후의 실제 크기를 알고 싶거나 ScrollView에서 특정 위치로 스크롤하여 해당 부분을 보여주고 싶을 때 사용합니다.
+- frame은 UIView의 실제 위치와 크기를 설정할 때 사용하며,
+- bounds는 View를 회전한 후의 실제 크기를 알고 싶거나 ScrollView에서 특정 위치로 스크롤하여 해당 부분을 보여주고 싶을 때 사용합니다.
 
 ### iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인지 설명하시오
 
@@ -142,11 +143,12 @@ https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/iOS_Si
 근접 센서 
 기압계
 주변 광 센서
+실제 Face ID 동작 (시뮬레이터에서 가상으로 동작되게 하는 것은 가능)
 ```
 
 - Apple API
 ```
-핸드오프 기능
+핸드오프 기능 (* Apple 기기들 사이에서 한 기기에서 하던 작업을 다른 기기에서 이어서 할 수 있는 작업)
 Message UI (메시지 보내기) 
 ```
 
@@ -399,7 +401,6 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 - 비동기 처리가 필요한 이유는 2가지가 있다.
 1) 효율적인 프로그래밍을 위해 -> 여러 스레드로 분산처리 하므로 순서가 중요한 작업이 아니라면 더 효율적으로 동작한다.
 2) 사용성, 반응성이 좋은 앱을 위해 -> 이미지나 네트워킹같이 시간이 오래걸리는 작업을 동기적으로 처리하면 사용자는 처리될 때까지 기다려야 하므로 사용성이 좋지 않고, 화면이 끊겨 보이게 될 것임
-
 
 ### GCD의 Queue 종류는 어떤게 있나요?
 
