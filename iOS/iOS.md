@@ -43,7 +43,7 @@
 
 #### 왜 viewWillAppear에서 호출하는 것이 좋을까요?
 
-- 
+- viewDidAppear는 이미 사용자에게 화면이 보일 시점이기 대문에, 화면이 보이고 나서 API를 호출하기 보다는 보이기 전에 호출하는 것이 사용자 경험에 더 좋다고 생각합니다.
 
 ### UIWindow 객체의 역할은 무엇인가?
 
@@ -299,6 +299,8 @@ https://ios-development.tistory.com/800
 결합도가 낮아진다는것은 한 클래스가 변경될 경우 다른클래스가 변경될 필요성이 적어진다는 뜻으로도 이해할 수 있습니다.
 
 ### Responder Chain은 무엇이고, 구조가 어떻게 되어있는가?
+
+<img width="600" src="https://github.com/yurrrri/ready-for-tech-interview/assets/37764504/33e6be0c-7cf7-4e8d-bf41-5c086fc37e96" />
 
 - responder chain은 이벤트를 first responder에서부터 이벤트가 처리될 때까지 상위 뷰인 UIView에서 UIViewController, UIWindow까지 거슬러 올라가서 이벤트를 전달하는 구조입니다.
 
