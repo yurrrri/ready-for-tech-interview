@@ -36,6 +36,7 @@
 #### 스토리보드 혹은 xib 파일은 언제 불리나요?
 
 - loadView에서 뷰를 메모리에 올립니다.
+- 만약 코드 방식에서 뷰컨트롤러의 뷰를 바꿀 필요성이 있는 경우에 해당 생명주기 메소드에서 뷰를 바꾸게됩니다.
 
 #### API 통신은 생명주기 어느 메서드에서 하는것이 적당할까요?
 
@@ -44,11 +45,6 @@
 #### 왜 viewWillAppear에서 호출하는 것이 좋을까요?
 
 - viewDidAppear는 이미 사용자에게 화면이 보일 시점이기 대문에, 화면이 보이고 나서 API를 호출하기 보다는 보이기 전에 호출하는 것이 사용자 경험에 더 좋다고 생각합니다.
-
-### UIWindow 객체의 역할은 무엇인가?
-
-- UIView의 컨테이너 역할로서, 앱 컨텐츠를 보여주고 이벤트를 뷰에 전달하는 역할을 합니다.
-- 이외에도 Window의 rootViewController를 포함해서 이로부터 시작된 하나 이상의 뷰를 보여주는 역할을 합니다.
 
 ### 상태 변화에 따라 다른 동작을 처리하기 위한 App Delegate 메서드들을 설명하시오.
 
@@ -65,6 +61,13 @@
 #### 앱을 개발할 때 뷰컨트롤러에서 위 특정 앱 생명주기에 진입했는지, 진입한 경우 아는 방법에 대해 알고있는지?
 
 - NotificationCenter의 observer를 앱 생명주기의 key로 값을 추가한 다음, 해당 생명주기에 진입했을 때의 observer가 현재 작동하는 observer와 일치한다면 특정 동작을 실행하도록 하면 된다.
+
+### UIWindow 객체의 역할은 무엇인가?
+
+https://zeddios.tistory.com/283
+
+- UIView의 컨테이너 역할로서, UIView의 컨텐츠를 보여주는 역할을 하고, 사용자의 이벤트를 UIView에 전달하는 역할을 하게됩니다.
+- 또한 UIWindow의 rootViewController를 변경함으로써 해당 UIWindow에서 시작되는 화면을 변경할 수 있습니다.
 
 ### Delegate 패턴이란 무엇인가요? Delegate 패턴을 활용하는 경우를 예를 들어 설명하시오.
 
@@ -133,7 +136,7 @@ https://cali-log.oopy.io/082474c8-2668-436b-af2f-f41fe891e1fb
 https://developer.apple.com/documentation/uikit/uinavigationcontroller
 
 - UINavigationController는 뷰 컨트롤러를 네비게이션 계층으로 관리하고자 할 때, 자식 뷰 컨트롤러들을 관리하는 Container 뷰컨트롤러 역할을 합니다.
-- 네비게이션 컨트롤러는 뷰를 스택 형태로 관리하기 떄문에 네비게이션 바에 이전 화면으로 돌아가기 위한 back button을 제공합니다.
+- 네비게이션 컨트롤러는 UIViewController를 스택 형태로 관리하고, 네비게이션 바에 이전 화면으로 돌아가기 위한 back button을 제공합니다.
 
 ### 실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.
 
@@ -164,7 +167,7 @@ Message UI (메시지 보내기)
 **Core Data**
 - UserDefaults 보다는 복잡하고 큰 데이터를 영구적으로 저장하기에 적합하며, Entity 기반으로 앱의 모델을 관리하는 프레임워크입니다.
 
-### User Defaults에 struct나 class를 저장할 수 있나요?
+#### User Defaults에 struct나 class를 저장할 수 있나요?
 
 - struct나 class와 같은 사용자 정의 타입은 NsData 형식으로 변경한다음, NSKeyedArchiver를 이용하여 저장할 수 있습니다.
 - 가져올때는 NsKeyedUnArchiever로 객체를 복구해서 가져올 수 있습니다.
@@ -181,7 +184,7 @@ Message UI (메시지 보내기)
 
 이 때 2가지 방식 모두 init과 required init을 구현해야한다는 특징이 있습니다.
 
-### init과 required init을 반드시 구현해야한다고 했는데 무슨 의미인가요?
+#### init과 required init을 반드시 구현해야한다고 했는데 무슨 의미인가요?
 
 - UIView는 지정 생성자를 생략하면 자동으로 상속하는데, 지정 생상자를 통해 커스텀하게 view를 초기화하게 되면 required init도 반드시 구현해야하므로, 2가지 메소드를 필수적으로 구현해야합니다.
 
@@ -219,7 +222,8 @@ https://zeddios.tistory.com/359
 
 ### layoutIfNeeded()는 뭔가요?
 
-- drawing cycle을 기다리지 않고 호출 즉시 크기나 위치를 다시 적용해달라고 명시하는 메소드
+- setNeedsLayout과 같은 사이클에 호출할 수 있는 메소드인데, setNeedsLayout은 다음 사이클의 메소드를 실행해달라고 하는 반면에 layoutIfNeeded()는 그 다음 사이클의 호출을 기다리지 않고 즉시 크기나 위치를 다시 적용해달라고 명시하는 메소드
+- 주로 애니메이션과 같이 바로 뷰의 크기나 위치 조정이 사용자에게 보여야할 때 사용
 
 ### stackView의 장점과 단점에 대해서 설명하시오.
 
