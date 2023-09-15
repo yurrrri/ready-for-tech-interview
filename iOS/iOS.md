@@ -206,12 +206,13 @@ https://babbab2.tistory.com/53
 - Core Animation 프레임워크에 포함된 객체로서, UIView는 하나의 layer를 감싸고 있는 형태입니다.
 - layer는 UIKit에서 처리할 수 없는 이미지 기반의 컨텐츠를 관리하는 역할을 하며, border, shadow, cornerRadius 등의 속성을 UIView 대신 변경해주는 역할을 하기도 합니다.
 
-### iOS에서 뷰(View)와 레이어(Layer)의 개과 차이점에 대해 설명해보세요.
+### iOS에서 뷰(View)와 레이어(Layer)의 개념과 차이점에 대해 설명해보세요.
 
 https://ios-development.tistory.com/977
+https://velog.io/@yeahg_dev/UIView-CALayer-%EC%B0%A8%EC%9D%B4%EC%A0%90
 
 - UIView가 layer를 감싸고 있는 형태이고, UIView는 1개 이상의 Layer를 가질 수 없지만 하나의 Layer는 여러개의 sub layer를 가질 수 있습니다.
-- UIView는 UIKit에 속한 클래스인 반면에 Layer는 Core Animation 프레임워크에 속한 클래스입니다.
+- UIView는 UIKit에 속한 클래스인 반면에 Layer는 Core Animation 프레임워크에 속한 클래스입니다. UIKit은 Core Animation의 간단한 작업을 하기 위해 탄생한 프레임워크이기 때문에, 컨텐츠 드로잉이나 애니메이션과 같은 고차원 작업들은 Core Animation에 속한 Layer가 담당하게 됩니다.
 - UIView는 UIResponder의 서브클래스이기 때문에 사용자의 제스처를 제스처 인식기를 통해 인식할 수 있지만, layer는 UIResponder가 없기 때문에 제스처를 인식할 수 없습니다.
 
 ### setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
