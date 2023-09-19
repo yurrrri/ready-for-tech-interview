@@ -237,7 +237,13 @@ https://zeddios.tistory.com/359
 
 - stackView의 SubView는 StackView가 지정한 뷰의 배치나 정렬을 따르기에, 개별 SubView의 디테일한 위치나 크기 조정은 어려울 수 있습니다.
 
-### ❗️App thinning에 대해서 설명하시오.
+### App thinning에 대해서 설명하시오.
+
+https://zeddios.tistory.com/655
+https://jiseok-zip.tistory.com/entry/iOSApp-Thinning
+
+- 앱스토어와 운영체제가 디바이스의 특성에 맞게 설치되도록 하는 설치 최적화 기술로, 빠른 다운로드가 가능해집니다.
+- 이를 구현하는 방법으로는 슬라이싱 / 비트코드 / 주문형 리소스가 있습니다.
 
 ### 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
 
@@ -247,7 +253,8 @@ https://developer.apple.com/documentation/uikit/uiapplication
 
 ### @Main에 대해서 설명하시오. 
 
-- 앱을 시작할 때의 진입점을 지정하는 어노테이션으로, iOS앱에서는 App Delegate에 지정되어있어 App Delegate를 진입점으로 하여, 앱 상태를 관리하는 UIApplication 인스턴스 생성 및 메인 UI를 로드하게 됩니다.
+- 앱을 시작할 때의 진입점을 지정하는 어노테이션으로, iOS앱에서는 App Delegate에 지정되어있습니다.
+- 따라서 App Delegate를 진입점으로 하여, 앱 상태를 관리하는 UIApplication 인스턴스 생성 및 초반의 앱 속성 초기화, 메인 UI를 로드하는 등의 역할을 수행하게 됩니다.
 
 ### 앱 생명주기에서 didFinishLaunching() 이전에는 어떤 과정이 있나요? 
 
@@ -265,7 +272,7 @@ https://developer.apple.com/documentation/uikit/uiapplication
 
 https://neph3779.github.io/ios/WhatIsAppBundle/
 
-- App Bundle 안에는 앱을 실제로 실행하는 파일, info.plist, 사용하는 프레임워크, 이미지나 문자열 등의 Resource 파일, 화면을 스토리보드나 Xib로 구현할 경우에 해당 파일 또한 App Bundle 안에 포함됩니다.
+- App Bundle 안에는 앱의 실행파일, info.plist, 사용하는 프레임워크, 이미지나 문자열 폰트 등의 Resource 파일, 화면을 스토리보드나 Xib로 구현할 경우에 해당 파일 또한 App Bundle 안에 포함됩니다.
 
 ### NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
 
@@ -381,6 +388,10 @@ https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-cod
 
 ### Storyboard에서 충돌이 이미 발생했을 때 어떻게 해결하는가?
 
+- Storyboard에서 이미 충돌이 발생했을 경우에는 스토리보드를 xml 파일 읽기로 오픈해서 conflict가 나는 지점에서 팀원과 상의를 통해 어떤 내용으로 수정되어야 하는지를 결정하고 적절하게 해결해야합니다.
+- 다만 사전에 예방할 수 있는 방법은 존재합니다. 우선 사전에 xcuserstate 파일을 gitignore에 추가하여 해당 파일 수정사항이 반영되지 않도록 조치하고, (xcuserdata 폴더 자체를 gitignore에 추가하여도 무관)
+- storyboard reference를 통해 기능 단위로 스토리보드를 분리하고 담당자가 해당 스토리보드만을 가지고 작업하게 되면, conflict를 최대한 방지할 수 있습니다.
+
 ### Safearea에 대해서 설명하시오.
 
 - iOS 11이후 등장한 개념으로, 노치나 하단 홈에 의해 가려질 수 있는 부분에 대한 마진을 자체적으로 가지는 영역입니다.
@@ -402,6 +413,21 @@ https://developer.apple.com/library/archive/documentation/UserExperience/Concept
 
 ### ❗️ 뷰 디버깅은 어떻게 하는지?
 
+### 웹 서버와 HTTP 연결을 사용해서 데이터를 주거나 받으려면 사용해야 하는 클래스와 동작을 설명하시오.
+
+- URLSession을 통해 네트워크 통신을 진행하게 됩니다.
+- URLSession의 data task를 일반 통식 / 백그라운드 통신 등 다양한 task의 유형과 통신을 진행할 url을 지정하게 되고, 해당 유형을 통해 completionHandler로 response, data, error 타입 등의 통신 결과를 받아 처리하게 됩니다.
+
+#### URLSession의 data task의 completionHandler 안에서 UI를 처리하려면?
+
+- UI를 바로 반영하려면, URLSession은 비동기적으로 동작하기 때문에 completionHandler 안에서 따로 메인스레드로 UI를 처리하는 로직을 보낼 필요가 있음
+
+### JSON 데이터를 처리하는 방식과 파서, 객체 변환 방식에 대해 설명하시오.
+
+https://learn-hyeoni.tistory.com/45
+https://babbab2.tistory.com/61
+
+- json 구조에 맞춰 Codable 프로토콜을 따르는 struct를 설게하고, URLSession을 통해 통신한 data를 JSONDecoder를 통해 디코딩을 하여 파싱하게 됩니다.
 
 <br/>
 
