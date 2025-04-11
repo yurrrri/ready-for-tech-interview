@@ -23,6 +23,8 @@
 - 병렬은 멀티 코어 환경에서 여러 코어가 동시적으로 작동하게 함으로써 성능을 극대화할 수 있고,
 - 동시성은 멀티 코어를 활용하여 여러 스레드에 작업을 적절하게 분배함으로써 1개의 코어보다 성능을 극대화할 수 있습니다.
 
+### iOS 앱에서 Thread Sanitizer를 사용하여 동시성 문제를 탐지하고 해결하는 방법을 설명해주세요.
+
 ### 프로세스와 스레드의 차이점, 그리고 iOS에서의 프로세스와 스레드 관리 방법에 대해 설명해주세요.
 
 - 프로세스는 메모리에 적재되어 현재 CPU에 의해 할당받아 실행되고 있는 프로그램을 의미합니다. 스레드는 한 프로세스 내에서 실행되는 동작의 단위를 의미합니다.
@@ -170,17 +172,13 @@
 
 ## 네트워크
 ### [네트워크 CS](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC.md)
+### OSI 7계층에서, iOS 앱에서 서버와 통신할 때, 개발자가 주로 신경 쓰는 계층은 어디이며, 그 이유는 무엇인가요? (Application Layer 위주)
+
 ### REST API와 iOS에서의 네트워크 요청 및 응답 처리 방법에 대해 설명해주세요.
-#### REST의 제약 조건(Stateless, Cacheable, Client-Server 등)에 대해 설명해주세요.
 
 ### iOS 앱에서 네트워크 통신을 하는 방법에는 어떤 것들이 있나요?
 ### iOS에서 URLSession을 사용하여 네트워크 요청을 보내는 기본적인 과정은 무엇인가요?
 #### URLSession 외에 iOS에서 네트워크 통신을 위해 사용할 수 있는 다른 방법(라이브러리)들은 무엇이 있나요? (예: Alamofire) 어떤 장단점이 있을까요?
-
-### REST API에서 HTTP 메서드들의 차이점(GET, POST, PUT, DELETE 등)과 각각의 용도를 설명해주세요.
-#### GET과 POST의 주요 차이점(멱등성, Body 유무, 캐싱 등)은 무엇인가요?
-#### PUT과 PATCH 메서드의 차이점은 무엇인가요? 언제 각각을 사용해야 할까요?
-### HTTP 상태 코드에 대해서 설명해주세요. (1xx, 2xx, 3xx, 4xx, 5xx 그룹별 의미)
 #### API 요청 실패 시, 4xx 에러와 5xx 에러의 의미 차이는 무엇이며, 앱에서는 각각 어떻게 대응하는 것이 좋을까요? (예: 사용자에게 알림, 재시도 로직)
 
 ### 서버로부터 받은 JSON 데이터를 Swift 객체로 변환하는 과정(Decoding)에 대해 설명해주세요.
@@ -191,6 +189,16 @@
 ### 직렬화(Serialization)와 역직렬화(Deserialization)는 무인가요?
 #### JSON 형식이란 무엇이며, 왜 API 통신에서 자주 사용되나요?
 #### JSON외에 통신에서 자주 사용 되는 형식은 어떤것이 있나요?
+
+### iOS에서의 보안 통신 방법에 대해 설명해주세요.
+#### HTTPS를 사용하면 통신 내용이 안전하다고 말하는데, 정확히 무엇으로부터 보호되는 건가요? (기밀성, 무결성, 인증 설명)
+#### iOS 앱에서 HTTP 통신을 시도하면 기본적으로 어떤 제한이 있나요? 이 제한을 우회하려면 어떻게 해야 하나요? (ATS - App Transport Security)
+### 소켓 통신에 대해 설명해주세요.
+#### 소켓 프로그래밍을 직접 해야 하는 경우는 언제일까요? URLSession과 같은 고수준 API와 비교했을 때 장단점은 무엇인가요?
+### iOS 앱에서 네트워크 요청 시 응답 캐싱(Response Caching)을 하는 방법은 무엇인가요?
+#### URLCache는 어떤 역할을 하나요?
+#### 응답 캐싱의 장단점은 무엇인가요?
+#### 응답 캐싱을 커스터마이징하는 방법을 설명해주세요.
 
 ## 딥링크, 유니버셜 링크
 ### iOS 앱에서 Deep Link와 Universal Link의 차이점은 무엇인가요
@@ -457,11 +465,42 @@ do {
 ## 접근 제어자
 ### Swift의 접근 제어자(Access Control Levels)에 대해 설명해주세요.
 
+- 코드의 접근 범위를 정의할 수 있는 제어자를 의미합니다. 외부에서 확인하면 안되는 코드를 은닉함으로써 코드 보안성을 유지할 수 있고, 컴파일러가 해당 변수가 어느 범위까지 쓰는지를 인지하여 컴파일 시간이 줄어든다는 장점이 있습니다.
+
 #### 접근 제어자를 사용하는 이유는 무엇인가요?
+
+-  외부에서 확인하면 안되는 코드를 은닉함으로써 코드 보안성을 유지할 수 있고, 컴파일러가 해당 변수가 어느 범위까지 쓰는지를 인지하여 컴파일 시간이 줄어든다는 장점이 있습니다.
 
 #### `open`과 `public`의 차이점은 무엇인가요?
 
+- 모두 외부 모듈에서 접근 가능하다는 특징이 있지만, open은 상속이 가능하며 public은 상속이 불가능하다는 차이점이 있습니다.
+
 ####  `internal`, `fileprivate`, `private`의 사용 시기는 어떻게 결정하나요?
+
+- internal은 기본 접근 제어자로, 같은 모듈 내에서만 접근해야할 때 사용하며
+- fileprivate는 파일 내에서만 접근 가능하게 하기 위해 사용합니다.
+- private는 해당 코드 스코프 내에서만 접근가능하게 하고싶을 때 사용합니다.
+
+
+### Swift의 고차 함수(Higher-Order Functions)에 대해 설명해주세요.
+#### `map`과 `flatMap`의 차이점은 무엇인가요?
+#### `filter`, `reduce` 함수는 어떤 경우에 사용하나요?
+#### `compactMap`은 어떤 역할을 하나요?
+
+### Swift의 제네릭(Generic)에 대해 설명해주세요.
+#### 제네릭을 사용하는 이유는 무엇인가요?
+#### 제네릭 타입 파라미터와 제약 조건을 설정하는 방법은 무엇인가요?
+#### 제네릭을 사용할 때의 장점과 주의할 점은 무엇인가요?
+
+### Swift의 문자열(String) 다루기와 관련된 주요 기능은 무엇이 있나요?
+#### 서브스트링(Substring)과 문자열의 차이점은 무엇인가요?
+#### 문자열 보간법(String Interpolation)을 사용하는 방법과 주의 사항을 설명해주세요.
+#### 정규식(Regular Expression)을 사용하여 문자열을 다루는 방법을 설명해주세요.
+
+### iOS 앱에서 의존성 주입(Dependency Injection)은 어떤 목적으로 사용되나요?
+#### 의존성 주입의 세 가지 유형(Initializer Injection, Property Injection, Method Injection)을 설명해주세요.
+#### 의존성 주입 컨테이너(Dependency Injection Container)란 무엇인가요?
+#### 의존성 주입을 사용함으로써 얻을 수 있는 이점은 무엇인가요?
 
 ## Delegate
 ### iOS에서 Delegate 패턴은 무엇이며, 어떤 상황에서 사용되나요?
@@ -516,6 +555,11 @@ class ViewController: UIViewController, TaskDelegate {
 #### 클로저의 캡처 리스트(Capture List)는 어떤 역할을 하나요?
 #### 델리게이션 패턴과 클로저를 함께 사용하는 경우의 장단점은 무엇인가요?
 
+## 자료구조
+[자료구조 CS 질문](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
+### 스택과 큐는 어떤 iOS 기능 구현에 사용될 수 있을까요? (예: 화면 네비게이션 스택, 작업 큐)
+### Swift의 `Dictionary`와 `Set`은 해시 테이블과 어떤 관련이 있을까요?
+### iOS UI 구조(View Hierarchy)와 트리는 어떤 관련이 있을까요?
 
 ## UIKit
 ### iOS 앱의 생명주기(App Life Cycle)에 대해 설명해주세요.
@@ -532,12 +576,33 @@ class ViewController: UIViewController, TaskDelegate {
 #### CollectionView의 레이아웃 종류와, 커스터마이징하는 방법은 무엇인가요?
 #### 테이블 뷰와 컬렉션 뷰의 데이터 소스(Data Source)와 델리게이트(Delegate)의 역할은 무엇인가요?
 
-## 자료구조
-[자료구조 CS 질문](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
-### 스택과 큐는 어떤 iOS 기능 구현에 사용될 수 있을까요? (예: 화면 네비게이션 스택, 작업 큐)
-### Swift의 `Dictionary`와 `Set`은 해시 테이블과 어떤 관련이 있을까요?
-### iOS UI 구조(View Hierarchy)와 트리는 어떤 관련이 있을까요?
+## iOS 개발
+### iOS 앱에서 데이터를 저장하는 방법에는 어떤 것들이 있나요?**
+#### `UserDefaults`의 사용 시 주의할 점은 무엇인가요?
+#### Keychain은 어떤 데이터를 저장하기에 적합한가요?
+#### Core Data와 SQLite의 차이점은 무엇이며, 각각 언제 사용하면 좋나요?
 
+### 의존성 관리 도구(CocoaPods, Carthage, Swift Package Manager)의 종류와 차이점은 무엇인가요?
+#### 각 도구의 사용 방법과 장단점을 설명해주세요.
+#### 의존성 관리를 통해 얻을 수 있는 이점은 무엇인가요?
+
+### 사용자 인터페이스(UI) 테스트와 단위(Unit) 테스트의 차이점은 무엇인가요?
+#### XCTest 프레임워크를 사용하여 테스트를 작성하는 방법은 무엇인가요?
+#### 테스트 주도 개발(TDD)의 장점은 무엇인가요?
+#### 의존성 주입(Dependency Injection)을 활용하여 테스트 가능한 코드를 작성하는 방법은 무엇인가요?
+
+### Xcode에서 Instruments를 사용하여 앱의 성능을 분석하는 방법은 무엇인가요?**
+#### Time Profiler를 사용하여 성능 이슈를 찾는 방법을 설명해주세요.
+#### Allocations Instrument를 사용하여 메모리 누수를 탐지하는 방법은 무엇인가요?
+#### Leaks Instrument를 사용하여 메모리 누수를 찾는 방법은 무엇인가요?
+
+### iOS 앱에서 의존성 주입(Dependency Injection)은 어떤 목적으로 사용되나요?
+#### 의존성 주입의 세 가지 유형(Initializer Injection, Property Injection, Method Injection)을 설명해주세요.
+#### 의존성 주입 컨테이너(Dependency Injection Container)란 무엇인가요?
+#### 의존성 주입을 사용함으로써 얻을 수 있는 이점은 무엇인가요?
+
+
+------ 분류중 -----
 
 4. **CPU 아키텍처의 종류(예: ARM, x86)와 각 특징에 대해 설명해주세요.**
 
@@ -565,43 +630,7 @@ class ViewController: UIViewController, TaskDelegate {
     *   URL 스킴을 사용할 때 보안적으로 고려해야 할 점은 무엇일까요?
 *   앱 그룹(App Group)을 활용하여 데이터 공유를 하는 방법은 무엇인가요?
     *   앱 그룹을 통한 데이터 공유는 어떤 종류의 데이터에 적합할까요? 대용량 파일 공유에도 적합할까요?
-    *   앱 확장(App Extension)과 앱 그룹은 어떤 관계가 있나요?
-
-10. **네트워크 프로토콜 스택과 iOS에서의 네트워크 통신 방식에 대해 설명해주세요.**
-
-*   HTTP와 HTTPS의 차이점, 그리고 iOS에서의 보안 통신 방법에 대해 설명해주세요.
-    *   HTTPS를 사용하면 통신 내용이 안전하다고 말하는데, 정확히 무엇으로부터 보호되는 건가요? (기밀성, 무결성, 인증 설명)
-    *   iOS 앱에서 HTTP 통신을 시도하면 기본적으로 어떤 제한이 있나요? 이 제한을 우회하려면 어떻게 해야 하나요? (ATS - App Transport Security)
-*   SSL/TLS의 동작 원리(Handshake 과정 포함)를 간략하게 설명해주세요.
-    *   브라우저나 앱이 서버의 SSL/TLS 인증서가 유효한지 어떻게 확인할 수 있나요? (CA, 인증서 체인 개념)
-
-11. **컴퓨터 네트워킹에서 OSI 7계층 모델에 대해 설명해주세요.**
-
-*   각 계층의 역할과 대표적인 프로토콜은 무엇인가요?
-    *   iOS 앱에서 서버와 통신할 때, 개발자가 주로 신경 쓰는 계층은 어디이며, 그 이유는 무엇인가요? (Application Layer 위주)
-*   네트워크 통신 과정을 계층 모델로 나누는 이유는 무엇일까요?
-*   TCP/IP 모델과 OSI 모델의 차이점은 무엇인가요?
-    *   실제 인터넷 통신은 어떤 모델을 더 가깝게 따르나요?
-
-12. **HTTP 프로토콜의 특징과 HTTP/1.1과 HTTP/2의 차이점을 설명해주세요.**
-
-*   HTTP의 무상태(Stateless) 성질은 무엇이며, 어떻게 극복하나요?
-    *   로그인 상태를 유지하기 위해 주로 어떤 기술들이 사용되나요? (Cookie, Session, Token)
-*   HTTP/2에서 추가된 주요 기능(Multiplexing, Header Compression, Server Push 등)은 무엇인가요?
-    *   HTTP/2의 멀티플렉싱(Multiplexing) 기능이 앱 성능에 어떤 이점을 줄 수 있나요? HTTP/1.1의 Head-of-Line Blocking 문제와 어떻게 관련되나요?
-*   HTTP/3에서 추가된 기능은 무엇인가요? (QUIC 기반이라는 점 언급)
-    *   HTTP/3가 UDP 기반의 QUIC을 사용하는 이유는 무엇일까요? TCP 대신 UDP를 선택한 장점은 무엇일까요?
-
-13. **TCP와 UDP의 특징과 차이점에 대해 설명해주세요.**
-
-*   연결 지향형 프로토콜과 비연결 지향형 프로토콜은 무엇인가요?
-*   TCP의 3-way handshake와 4-way handshake 과정은 어떻게 이루어지나요?
-    *   만약 3-way handshake 과정 중 문제가 발생하면 어떻게 되나요?
-    *   TCP의 혼잡 제어(Congestion Control)와 흐름 제어(Flow Control)는 무엇인가요?
-*   어떤 상황에서 UDP를 사용하는 것이 적합한가요?
-    *   실시간 비디오 스트리밍이나 온라인 게임에서는 TCP보다 UDP가 선호되는 이유는 무엇일까요? 데이터 손실 가능성은 어떻게 처리하나요?
-*   소켓 통신에 대해 설명해주세요.
-    *   소켓 프로그래밍을 직접 해야 하는 경우는 언제일까요? URLSession과 같은 고수준 API와 비교했을 때 장단점은 무엇인가요?
+    *   앱 확장(App Extension)과 앱 그룹은 어떤 관계가 있나요
 
 
 16. **iOS에서 메모리 사이즈와 관련된 개념과 고려 사항에 대해 설명해주세요.**
@@ -687,53 +716,6 @@ class ViewController: UIViewController, TaskDelegate {
    - 중단점(Breakpoint)의 종류와 활용 방법을 설명해주세요.
    - LLDB 콘솔에서 유용한 명령어는 어떤 것이 있나요?
 
-8. **iOS 앱에서 데이터를 저장하는 방법에는 어떤 것들이 있나요?**
-   - `UserDefaults`의 사용 시 주의할 점은 무엇인가요?
-   - Keychain은 어떤 데이터를 저장하기에 적합한가요?
-   - Core Data와 SQLite의 차이점은 무엇이며, 각각 언제 사용하면 좋나요?
-
-12. **의존성 관리 도구(CocoaPods, Carthage, Swift Package Manager)의 종류와 차이점은 무엇인가요?**
-    - 각 도구의 사용 방법과 장단점을 설명해주세요.
-    - 의존성 관리를 통해 얻을 수 있는 이점은 무엇인가요?
-
-13. **Swift의 고차 함수(Higher-Order Functions)에 대해 설명해주세요.**
-    - `map`과 `flatMap`의 차이점은 무엇인가요?
-    - `filter`, `reduce` 함수는 어떤 경우에 사용하나요?
-    - `compactMap`은 어떤 역할을 하나요?
-
-14. **Git에서 브랜치(Branch)를 사용하는 이유와 장점은 무엇인가요?**
-    - 브랜치를 병합(Merge)하는 방법에는 어떤 것들이 있나요?
-    - 브랜치 전략(예: Git Flow, GitHub Flow)에 대해 설명해주세요.
-    - 충돌(Conflict)이 발생했을 때 해결 방법은 무엇인가요?
-
-21. **사용자 인터페이스(UI) 테스트와 단위(Unit) 테스트의 차이점은 무엇인가요?**
-    - XCTest 프레임워크를 사용하여 테스트를 작성하는 방법은 무엇인가요?
-    - 테스트 주도 개발(TDD)의 장점은 무엇인가요?
-    - 의존성 주입(Dependency Injection)을 활용하여 테스트 가능한 코드를 작성하는 방법은 무엇인가요?
-
-22. **Xcode에서 Instruments를 사용하여 앱의 성능을 분석하는 방법은 무엇인가요?**
-    - Time Profiler를 사용하여 성능 이슈를 찾는 방법을 설명해주세요.
-    - Allocations Instrument를 사용하여 메모리 누수를 탐지하는 방법은 무엇인가요?
-    - Leaks Instrument를 사용하여 메모리 누수를 찾는 방법은 무엇인가요?
-
-23. **Swift의 제네릭(Generic)에 대해 설명해주세요.**
-    - 제네릭을 사용하는 이유는 무엇인가요?
-    - 제네릭 타입 파라미터와 제약 조건을 설정하는 방법은 무엇인가요?
-    - 제네릭을 사용할 때의 장점과 주의할 점은 무엇인가요?
-
-
-6. Swift의 문자열(String) 다루기와 관련된 주요 기능은 무엇이 있나요?
-
-- 서브스트링(Substring)과 문자열의 차이점은 무엇인가요?
-- 문자열 보간법(String Interpolation)을 사용하는 방법과 주의 사항을 설명해주세요.
-- 정규식(Regular Expression)을 사용하여 문자열을 다루는 방법을 설명해주세요.
-
-8. iOS 앱에서 의존성 주입(Dependency Injection)은 어떤 목적으로 사용되나요?
-
-- 의존성 주입의 세 가지 유형(Initializer Injection, Property Injection, Method Injection)을 설명해주세요.
-- 의존성 주입 컨테이너(Dependency Injection Container)란 무엇인가요?
-- 의존성 주입을 사용함으로써 얻을 수 있는 이점은 무엇인가요?
-
 
 13. iOS 앱에서 코어 애니메이션(Core Animation)을 사용하는 방법은 무엇인가요?
 
@@ -741,11 +723,6 @@ class ViewController: UIViewController, TaskDelegate {
 - 애니메이션 그룹(Animation Group)은 어떤 경우에 사용하나요?
 - 키 프레임 애니메이션(Keyframe Animation)과 스프링 애니메이션(Spring Animation)의 차이점은 무엇인가요?
 
-15. iOS 앱에서 네트워크 요청 시 응답 캐싱(Response Caching)을 하는 방법은 무엇인가요?
-
-- URLCache는 어떤 역할을 하나요?
-- 응답 캐싱의 장단점은 무엇인가요?
-- 응답 캐싱을 커스터마이징하는 방법을 설명해주세요.
 
 18. iOS 앱에서 로컬 푸시 알림(Local Push Notification)을 구현하는 방법은 무엇인가요?
 
@@ -758,8 +735,6 @@ class ViewController: UIViewController, TaskDelegate {
 - 키 경로 표현식(Key Path Expression)의 문법과 사용 예시를 설명해주세요.
 - 런타임에 키 경로를 사용하여 속성에 접근하는 방법은 무엇인가요?
 - 키 경로와 KVO(Key-Value Observing)의 관계를 설명해주세요
-
-22. iOS 앱에서 Thread Sanitizer를 사용하여 동시성 문제를 탐지하고 해결하는 방법을 설명해주세요.
 
 24. UIKit의 AdaptiveLayout과 Size Classes에 대해 설명해주세요.
 
@@ -794,8 +769,13 @@ class ViewController: UIViewController, TaskDelegate {
 - 바이너리 프레임워크를 생성할 때 고려해야 할 사항은 무엇인가요?
 - 바이너리 프레임워크를 배포하고 버전 관리하는 방법을 설명해주세요.
 
+6. Swift의 동적 멤버 조회(Dynamic Member Lookup)에 대해 설명해주세요.
+@dynamicMemberLookup 속성의 역할과 사용 방법은 무엇인가요?
+서브스크립트(Subscript)를 사용하여 동적 멤버 조회를 구현하는 방법을 설명해주세요.
+동적 멤버 조회를 활용한 실제 사용 사례를 들어주세요.
 
-7. Swift의 Property Wrapper에 대해 설명해주세요.
+
+8. Swift의 Property Wrapper에 대해 설명해주세요.
 
 - Property Wrapper를 사용하는 이유와 장점은 무엇인가요?
 - @State, @Binding, @ObservedObject 등의 Property Wrapper의 차이점과 사용 방법을 설명해주세요.
@@ -807,16 +787,4 @@ class ViewController: UIViewController, TaskDelegate {
 - Keychain Services API를 사용하여 데이터를 저장하고 읽어오는 과정을 설명해주세요.
 - Keychain Access Groups를 사용하여 앱 간에 데이터를 공유하는 방법은 무엇인가요?
 - Keychain의 접근 제어(Access Control) 옵션과 사용 방법을 설명해주세요.
-
-
-18. Swift의 런타임 동작과 성능 최적화 기법에 대해 설명해주세요.
-
-- Swift 런타임의 구조와 동작 방식을 설명해주세요.
-- 동적 디스패치, 인라이닝, 스택 프로모션 등 Swift 성능 최적화 기법과 컴파일러 최적화 옵션을 소개해주세요.
-
-19. iOS 앱의 접근성(Accessibility)을 향상시키기 위한 방법과 고려 사항에 대해 설명해주세요.
-
-- VoiceOver, Switch Control 등 접근성 기술의 동작 원리와 지원 방법을 설명해주세요.
-- Dynamic Type, Bold Text 등 시각적 접근성 향상을 위한 기술과 구현 방법을 소개해주세요.
-- 접근성 테스트 및 심사 기준, 모범 사례 등을 예시와 함께 설명해주세요.
 
