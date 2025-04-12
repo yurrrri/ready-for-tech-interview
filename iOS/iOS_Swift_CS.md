@@ -98,15 +98,24 @@
 
 #### Task와 TaskGroup을 사용하여 비동기 작업을 관리하는 방법을 설명해주세요.
 
+- Task는 비동기 작업의 단위를 일컬으며, 비동기 작업의 우선순위를 정할 수 있습니다.
+- TaskGroup은 여러 개의 하위 작업(child tasks)을 그룹으로 묶어 관리할 수 있습니다.
+여러 개의 하위 작업을 병렬로 실행하고 결과를 집계하며, 하위 작업의 결과는 완료 순서대로 반환됩니다.
 
 #### async let을 활용한 병렬 처리를 설명해주세요.
 
-- Swift Concurrency 문법에서 병렬 처리할 수 있는 방법론 중 하나입니다.
-- 
-
+- async let은 고정된 개수의 비동기 작업을 병렬로 실행하는 데 적합합니다.
+- 작업이 정의된 즉시 실행되며, 결과를 사용할 때 await 키워드를 통해 기다립니다.
 
 #### async let vs Taskgroup
 
+- async let은
+병렬로 실행할 작업 개수가 고정되어 있을 때, 
+모든 결과를 기다려야 다음 단계를 진행할 수 있을 때 사용하는 것이 적합합니다.
+또한 async let을 붙여 간편하게 병렬 처리를 하고자할 때에도 유용합니다.
+- TaskGroup은
+병렬로 실행할 작업의 개수를 미리 알 수 없고, 동적으로 변경될 수 있는 경우이거나
+for 문을 통해 시작한 작업들의 결과를 순서대로 기다리므로, 먼저 처리된 작업을 가지고 먼저 사후 작업을 진행해야할 때 유용합니다.
 
 ## 📚 디자인 패턴, 아키텍처
 
@@ -261,11 +270,33 @@ struct Person: Codable {
 #### 응답 캐싱의 장단점은 무엇인가요?
 #### 응답 캐싱을 커스터마이징하는 방법을 설명해주세요.
 
-## 📚 딥링크, 유니버셜 링크
+## 📚 딥링크, 유니버셜 링크, URL 스키마 
 ### iOS 앱에서 Deep Link와 Universal Link의 차이점은 무엇인가요
+
+| 항목                | 딥링크 (URL Scheme)                             | 유니버설 링크 (Universal Link)                  |
+|---------------------|--------------------------------------------------|--------------------------------------------------|
+| 형식                | `myapp://path`                                   | `https://example.com/path`                       |
+| 앱 미설치 시 동작   | 오류 발생 또는 무반응                            | 웹페이지로 자동 리디렉션                         |
+| 보안성              | 낮음 (스킴 충돌 및 스푸핑 가능성)                | 높음 (도메인 소유 확인 필요)                     |
+| 구현 난이도         | 낮음 (간단한 설정으로 가능)                     | 높음 (서버 설정 및 인증 필요)                   |
+| 지원 시작 iOS 버전 | iOS 2 이상                                       | iOS 9 이상                                       |
+
 #### Deep Link를 구현하는 방법과 주의 사항을 설명해주세요.
+
+- 1) 구현 방법
+- URL 스킴 등록:
+Xcode의 프로젝트 설정에서 Info.plist 파일에 URL Types 항목을 추가하고, 고유한 스킴을 등록합니다.​
+- 딥링크 처리:
+AppDelegate의 application(_:open:options:) 메서드에서 들어오는 URL을 처리하여 적절한 화면으로 이동시킵니다.​
+
+- 2) 주의사항
+- 앱이 설치되어 있지 않으면 링크가 작동하지 않으므로, 사용자에게 적절한 안내를 제공해야 합니다.​
+- 스킴 충돌을 방지하기 위해 고유한 스킴을 사용해야 합니다.​ (그러나 스킴이 고유함을 보장해주지 않아서 위험이 있음)
+
 #### Universal Link의 동작 원리와 설정 방법은 무엇인가요?
 #### Deep Link와 Universal Link를 함께 사용하는 경우의 장점은 무엇인가요?
+### URL 스킴(URL Scheme)을 이용한 앱 간 통신은 어떻게 이루어지나요?
+#### URL 스킴을 사용할 때 보안적으로 고려해야 할 점은 무엇일까요?
 
 ## 📚 에러 처리
 ### Swift의 에러 처리 방법에 대해 설명해주세요.
@@ -602,7 +633,6 @@ class ViewController: UIViewController, TaskDelegate {
 - fileprivate는 파일 내에서만 접근 가능하게 하기 위해 사용합니다.
 - private는 해당 코드 스코프 내에서만 접근가능하게 하고싶을 때 사용합니다.
 
-
 ### Swift의 고차 함수(Higher-Order Functions)에 대해 설명해주세요.
 #### `map`과 `flatMap`의 차이점은 무엇인가요?
 #### `filter`, `reduce` 함수는 어떤 경우에 사용하나요?
@@ -621,16 +651,95 @@ class ViewController: UIViewController, TaskDelegate {
 ## 📚 UIKit
 ### iOS 앱의 생명주기(App Life Cycle)에 대해 설명해주세요.
 #### 앱의 각 상태(`Not Running`, `Inactive`, `Active`, `Background`, `Suspended`)에서 가능한 작업은 무엇인가요?
-#### 상태 변화에 따라 호출되는 `AppDelegate` 또는 `SceneDelegate` 메서드는 무엇인가요?
-#### 백그라운드에서 작업을 완료하기 위한 방법은 어떤 것이 있나요?
 
+| 상태         | 설명                                                                 | 가능한 작업                                                                                   |
+|--------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Not Running  | 앱이 실행되지 않았거나, 시스템 또는 사용자가 종료한 상태.                  | 아무 작업도 수행되지 않음.                                                                   |
+| Inactive     | 앱이 Foreground에 있지만 사용자 입력을 받지 않는 상태. (예: 전화 수신 시)   | UI 업데이트 가능. 제한된 작업 수행 가능.                                                      |
+| Active       | 앱이 Foreground에 있으며 사용자 입력을 받고 있는 정상적인 상태.            | 사용자와 상호작용 가능. 모든 기능 실행 가능.                                                  |
+| Background   | 앱이 Background로 전환되었지만 여전히 코드 실행이 가능한 상태.              | 제한된 시간 동안 작업 가능 (예: 데이터 저장, 네트워크 요청). 백그라운드 작업 모드 활성화 시 장기 작업 가능 (예: 오디오 재생, 위치 추적). |
+| Suspended    | 앱이 Background에 있지만 코드 실행이 중단되고 메모리에만 유지된 상태. 시스템 리소스 부족 시 종료될 수 있음. | 작업 불가. 필요 시 시스템에 의해 다시 Active 또는 Background로 전환됨.                     |
+
+
+#### 상태 변화에 따라 호출되는 `AppDelegate` 또는 `SceneDelegate` 메서드는 무엇인가요?
+
+
+| 상태 변화             | AppDelegate 메서드                                  | SceneDelegate 메서드                         |
+|----------------------|-----------------------------------------------------|----------------------------------------------|
+| 앱 시작              | `application(_:didFinishLaunchingWithOptions:)`     | `scene(_:willConnectTo:options:)`            |
+| Foreground 진입      | `applicationWillEnterForeground(_:)`                | `sceneWillEnterForeground(_:)`               |
+| Active 상태 진입     | `applicationDidBecomeActive(_:)`                    | `sceneDidBecomeActive(_:)`                   |
+| Inactive 상태로 전환 | `applicationWillResignActive(_:)`                   | `sceneWillResignActive(_:)`                  |
+| Background 진입      | `applicationDidEnterBackground(_:)`                | `sceneDidEnterBackground(_:)`                |
+| 앱 종료              | `applicationWillTerminate(_:)`                     | -                                            |
+
+
+#### 백그라운드에서 작업을 완료하기 위한 방법은 어떤 것이 있나요?
 ### UIKit의 ViewController 생명주기에 대해 설명해주세요.
 
+| 메서드                    | 설명                                                                 |
+|---------------------------|----------------------------------------------------------------------|
+| `loadView()`              | 뷰를 메모리에 로드하는 단계로, 커스텀 뷰를 생성하거나 초기화할 때 사용됩니다.         |
+| `viewDidLoad()`           | 뷰가 메모리에 로드된 후 호출되며, 초기화 및 1회성 설정 작업을 수행합니다.             |
+| `viewWillAppear(_:)`      | 뷰가 화면에 나타나기 직전에 호출되며, 화면 갱신이나 데이터 업데이트를 처리합니다.      |
+| `viewDidAppear(_:)`       | 뷰가 화면에 완전히 나타난 후 호출되며, 애니메이션 시작이나 타이머 설정 등에 사용됩니다. |
+| `viewWillDisappear(_:)`   | 뷰가 화면에서 사라지기 직전에 호출되며, 데이터 저장이나 네트워크 요청 취소 등을 처리합니다. |
+| `viewDidDisappear(_:)`    | 뷰가 화면에서 완전히 사라진 후 호출되며, 리소스 해제나 정리 작업을 수행합니다.         |
+
+
 ### UIKit에서 TableView와 CollectionView의 차이점은 무엇인가요?
+
+| 항목                 | UITableView                                               | UICollectionView                                                  |
+|----------------------|------------------------------------------------------------|-------------------------------------------------------------------|
+| 구조                 | 단일 열(Column), 여러 행(Row)                             | 다중 열과 행을 구성할 수 있는 2차원 구조                         |
+| 스크롤 방향          | 수직 스크롤만 지원                                        | 수직 및 수평 스크롤 모두 지원                                    |
+| 셀 레이아웃          | 기본 스타일 제공 (예: 기본, 상세 등)                      | 기본 스타일 없음, 완전한 커스터마이징 필요                      |
+| 레이아웃 커스터마이징 | 제한적 (기본 제공 스타일 활용)                           | 자유로운 커스터마이징 가능 (FlowLayout, CompositionalLayout 등) |
+| 사용 사례            | 단순한 리스트 (예: 연락처 목록)                           | 복잡한 그리드나 다양한 레이아웃이 필요한 경우 (예: 사진 갤러리) |
+
+
 #### 셀을 재사용하는 이유와 방법을 설명해주세요.
+
+- 1) 이유
+- 메모리 효율성: 스크롤 시마다 새로운 셀을 생성하면 메모리 사용량이 증가합니다.​
+성능 향상: 재사용을 통해 셀 생성 및 초기화 비용을 줄여 스크롤 성능을 개선합니다.
+
+- 2) 방법
+셀 등록: tableView.register(CustomCell.self, forCellReuseIdentifier: "CellID")​
+셀 dequeuing: let cell = tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath)​
+재사용 준비: 셀 클래스에서 prepareForReuse() 메서드를 오버라이드하여 셀의 상태 초기화
+
 #### 동적인 셀 높이(Dynamic Cell Height)를 설정하는 방법은 무엇인가요?
+
+- Auto Layout을 활용하여 셀의 콘텐츠에 따라 높이가 자동으로 조정되도록 설정합니다.​
+- tableView.rowHeight = UITableView.automaticDimension 설정으로 셀 높이를 자동으로 계산하게 합니다.​
+- tableView.estimatedRowHeight = 100 등으로 예상 높이를 설정하여 초기 로딩 성능을 향상시킵니다.​
+
+이러한 설정을 통해 콘텐츠의 양이나 종류에 따라 셀의 높이가 동적으로 조정됩니다.​
+
 #### CollectionView의 레이아웃 종류와, 커스터마이징하는 방법은 무엇인가요?
+
+- 1) 레이아웃 종류:
+- UICollectionViewFlowLayout: 기본 제공 레이아웃으로, 셀을 행과 열로 배치합니다.​
+- UICollectionViewCompositionalLayout: 복잡한 레이아웃을 구성할 수 있는 현대적인 레이아웃 시스템입니다. ​
+
+- 2) 커스터마이징 방법:
+- UICollectionViewDelegateFlowLayout 프로토콜을 구현하여 셀의 크기, 간격 등을 조정합니다.​
+- UICollectionViewLayout을 상속하여 완전히 새로운 레이아웃을 구현할 수 있습니다.​
+
+이러한 방법들을 통해 다양한 형태의 레이아웃을 구성할 수 있습니다.​
+
 #### 테이블 뷰와 컬렉션 뷰의 데이터 소스(Data Source)와 델리게이트(Delegate)의 역할은 무엇인가요?
+
+- 1) Data Source:
+데이터 제공: 뷰에 표시할 데이터의 수와 내용을 제공합니다.​
+필수 메서드: numberOfSections, numberOfRowsInSection/numberOfItemsInSection, cellForRowAt/cellForItemAt​
+
+- 2) Delegate:
+사용자 상호작용 처리: 셀 선택, 편집, 높이 설정 등 사용자와의 상호작용을 처리합니다.​
+예시 메서드: didSelectRowAt/didSelectItemAt, heightForRowAt​
+
+- Data Source는 데이터를 관리하고 제공하는 역할을, Delegate는 사용자와의 상호작용을 처리하는 역할을 담당합니다. ​
 
 ## 📚 iOS 개발
 ### iOS 앱에서 데이터를 저장하는 방법에는 어떤 것들이 있나요?**
@@ -681,8 +790,6 @@ class ViewController: UIViewController, TaskDelegate {
 8. **iOS의 샌드박스(Sandbox) 개념과 역할, 그리고 앱 간 데이터 공유 방법에 대해 설명해주세요.**
 
 *   샌드박스 때문에 앱 개발 시 겪을 수 있는 제약사항에는 어떤 것들이 있을까요?
-*   URL 스킴(URL Scheme)을 이용한 앱 간 통신은 어떻게 이루어지나요?
-    *   URL 스킴을 사용할 때 보안적으로 고려해야 할 점은 무엇일까요?
 *   앱 그룹(App Group)을 활용하여 데이터 공유를 하는 방법은 무엇인가요?
     *   앱 그룹을 통한 데이터 공유는 어떤 종류의 데이터에 적합할까요? 대용량 파일 공유에도 적합할까요?
     *   앱 확장(App Extension)과 앱 그룹은 어떤 관계가 있나요
@@ -724,16 +831,6 @@ class ViewController: UIViewController, TaskDelegate {
 *   동적 프로그래밍의 두 가지 접근 방식(메모이제이션과 타뷸레이션)에 대해 설명해주세요.
 *   피보나치 수열을 계산하는 예시를 통해 동적 프로그래밍 방식을 설명해주실 수 있나요? 일반적인 재귀 방식과 비교했을 때 어떤 장점이 있나요?
 
-21. **자료구조의 종류와 iOS 개발에서 자주 사용되는 자료구조에 대해 설명해주세요.**
-
-*   배열(Array), 연결 리스트(Linked List), 스택(Stack), 큐(Queue)의 특징과 각 자료구조가 적합한 사용 사례를 설명해주세요.
-    *   데이터 중간에 삽입 또는 삭제가 빈번하게 일어날 경우, 이론적으로 배열과 연결 리스트 중 어떤 것이 더 유리할까요? 그 이유는 무엇인가요?
-    *   Swift의 `Array`는 실제로 어떤 자료구조에 더 가깝게 동작하나요? 가변 크기 배열은 내부적으로 어떻게 구현될 수 있을까요?
-    *   스택과 큐는 어떤 iOS 기능 구현에 사용될 수 있을까요? (예: 화면 네비게이션 스택, 작업 큐)
-*   해시 테이블(Hash Table)의 개념과 충돌 해결 방법(Chaining, Open Addressing 등)을 설명해주세요.
-    *   Swift의 `Dictionary`와 `Set`은 해시 테이블과 어떤 관련이 있을까요?
-    *   해시 충돌이 자주 발생하면 어떤 성능 문제가 생길 수 있나요? 좋은 해시 함수는 어떤 특징을 가져야 할까요?
-*   트리(Tree) 자료구조의 기본 개념과 종류(이진 트리, 이진 탐색 트리 등)에 대해 설명해주세요. iOS UI 구조(View Hierarchy)와 트리는 어떤 관련이 있을까요?
 
 22. **암호화와 보안의 기본 개념, 그리고 iOS 앱 보안을 위한 방안에 대해 설명해주세요.**
 
