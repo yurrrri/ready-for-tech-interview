@@ -99,9 +99,6 @@
 #### Task와 TaskGroup을 사용하여 비동기 작업을 관리하는 방법을 설명해주세요.
 
 
-#### 비동기 시퀀스(AsyncSequence)와 비동기 스트림(AsyncStream)의 차이점과 사용 예시를 들어주세요.
-
-
 #### async let을 활용한 병렬 처리를 설명해주세요.
 
 - Swift Concurrency 문법에서 병렬 처리할 수 있는 방법론 중 하나입니다.
