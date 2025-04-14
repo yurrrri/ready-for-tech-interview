@@ -568,14 +568,19 @@ class ViewController: UIViewController, TaskDelegate {
 }
 ```
 
-### 델리게이션 패턴(Delegation Pattern)과 클로저의 차이점은 무엇인가요?
 #### 델리게이션 패턴에서 메모리 누수가 발생할 수 있는 경우와 해결 방법을 설명해주세요.
-#### 델리게이션 패턴과 클로저를 함께 사용하는 경우의 장단점은 무엇인가요?
 
 ## 📚 자료구조
 ## 📚 [자료구조 CS](https://github.com/yurrrri/ready-for-tech-interview/blob/main/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%26%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98.md)
 ### 스택과 큐는 어떤 iOS 기능 구현에 사용될 수 있을까요? (예: 화면 네비게이션 스택, 작업 큐)
+
+- 스택은 화면 네비게이션 스택에 사용됩니다. 네비게이션 바에서 화면 전환 시 화면 스택에 화면이 쌓이게되고, 뒤로가기를 누르면 가장 최근에 추가된 화면이 제거되는 방식입니다.
+- 큐는 DispatchQueue에서 사용될 수 있을것같습니다. 해당 큐에 개발자가 작업을 보내면, 운영체제가 알아서 스레드에 작업을 분배하여 동시성 작업을 처리하게 됩니다.
+
 ### Swift의 `Dictionary`와 `Set`은 해시 테이블과 어떤 관련이 있을까요?
+
+- 해시 테이블 기반: Dictionary의 키와 Set의 요소는 해시 테이블로 구현되어 검색 시 O(1) 시간 복잡도를 가집니다.
+
 ### iOS UI 구조(View Hierarchy)와 트리는 어떤 관련이 있을까요?
 ### Swift 표준 라이브러리의 `sort()` 메서드는 어떤 정렬 알고리즘을 사용할까요? (Introsort)
 ### Swift의 `Array`는 값 타입인데, 이것이 성능과 메모리 사용에 어떤 영향을 미치나요? (Copy-on-Write 설명 포함)
