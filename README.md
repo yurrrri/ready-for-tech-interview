@@ -2,7 +2,7 @@
 ## 🍎 iOS & Swift
 
 1. [UIKit & Swift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/iOS_Swift_CS.md)
-2. [RxSwift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/rxswift.md)
+2. [반응형 프로그래밍(RxSwift, Combine)](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/반응형프로그래밍.md)
 3. [SwiftUI](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/SwiftUI.md)
 
 ## 🗂️ 자료구조 & 알고리즘
