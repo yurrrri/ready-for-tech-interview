@@ -4,7 +4,7 @@
 1. [UIKit & Swift](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/iOS_Swift_CS.md)
 2. [반응형 프로그래밍(RxSwift, Combine)](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/반응형프로그래밍.md)
 3. [SwiftUI](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/SwiftUI.md)
-4. [New_통합](https://github.com/yurrrri/ready-for-tech-interview/tree/main/iOS)
+4. [New_통합](https://github.com/yurrrri/ready-for-tech-interview/blob/main/iOS/new_iOS.md)
 
 ## 🐦 Flutter
 
